@@ -1,7 +1,40 @@
-import { useState, useEffect} from "react";
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom" 
+import Navigation from "./components/Layout/Footer/Navigation/Navigation"
+import Home from "./components/Pages/Home/Home"
+import Explore from "./components/Pages/Explore/Explore"
+import Locate from "./components/Pages/Locate/Locate"
+import Redeem from "./components/Pages/Redeem/Redeem"
+import SubmitLocation from "./components/Pages/SubmitLocation/SubmitLocation"
+import Points from "./components/Pages/Points/Points"
+import Leaderboard from "./components/Pages/Leaderboard/Leaderboard"
+import AuthCard from "./components/Layout/AuthCard/AuthCard"
+import './App.css'
+import Header from "./components/Layout/Header/Header"
+import Footer from "./components/Layout/Footer/Footer"
 
 function App() {
+
+  return (
+    <div className="App">
+      <Router>
+        <Header />
+          <Routes>
+            <Route path="/login" element={<AuthCard/>} />
+            <Route path="/" element={<Home/>} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/locate" element={<Locate />} />
+            <Route path="/create/location" element={<SubmitLocation />} />
+            <Route path="/redeem" element={<Redeem />}/>
+            <Route path="/points" element={<Points />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+          </Routes>
+        <Footer />
+      </Router>
+    </div>
+  )
+}
+
+export default App
 
  /* To pull in information from the backend
 
@@ -28,12 +61,3 @@ function App() {
   delete '/logout'  To logout a user (delete session)
  
  */
-
-  return (
-    <div className="App">
-      <h1>Recycle Quest</h1>
-    </div>
-  );
-}
-
-export default App;
