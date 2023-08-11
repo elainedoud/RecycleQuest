@@ -1,11 +1,13 @@
 import React from "react"
+import map from './map_sprite_sheet.png'
+import "./Explore.css"
 
 function Explore(){
     return(
         <>
-        <h4>This is Explore</h4>
-        <p>Here users can learn by exploring our village</p>
-        <p>Need to hardcode data in for now</p>
+        <p>Here users can learn by exploring our village!</p>
+        <p>Coming Soon! Map Pieces below for color pallete match:</p>
+        <img src={map} alt="map sprite sheet"/>
         </>
     )
 }

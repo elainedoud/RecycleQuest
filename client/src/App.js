@@ -1,24 +1,25 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom" 
-import Navigation from "./components/Navigation"
-import Home from "./components/Home"
-import Explore from "./components/Explore"
-import Locate from "./components/Locate"
-import Redeem from "./components/Redeem"
-import SubmitLocation from "./components/SubmitLocation"
-import Points from "./components/Points"
-import Leaderboard from "./components/Leaderboard"
-import AuthCard from "./components/AuthCard"
+import Navigation from "./components/Layout/Footer/Navigation/Navigation"
+import Home from "./components/Pages/Home/Home"
+import Explore from "./components/Pages/Explore/Explore"
+import Locate from "./components/Pages/Locate/Locate"
+import Redeem from "./components/Pages/Redeem/Redeem"
+import SubmitLocation from "./components/Pages/SubmitLocation/SubmitLocation"
+import Points from "./components/Pages/Points/Points"
+import Leaderboard from "./components/Pages/Leaderboard/Leaderboard"
+import AuthCard from "./components/Layout/AuthCard/AuthCard"
+import './App.css'
+import Header from "./components/Layout/Header/Header"
+import Footer from "./components/Layout/Footer/Footer"
 
 function App() {
 
   return (
     <div className="App">
-      <h1>Recycle Quest</h1>
       <Router>
-        <Navigation />
-        <AuthCard />
-        ___
+        <Header />
           <Routes>
+            <Route path="/login" element={<AuthCard/>} />
             <Route path="/" element={<Home/>} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/locate" element={<Locate />} />
@@ -27,6 +28,7 @@ function App() {
             <Route path="/points" element={<Points />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
           </Routes>
+        <Footer />
       </Router>
     </div>
   )
