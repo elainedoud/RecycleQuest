@@ -28,6 +28,7 @@ function AuthCard(){
       };
     })
     }, []);
+    /* useEffect function not working; likely User Controller needs to be updated for sessions */ 
 
   const handleClick = () => {
     setSignUp((prevState) => !prevState)
@@ -57,9 +58,7 @@ function AuthCard(){
          navigate(`/`)
        })
        .catch((error) => {
-        console.error(error)
        setErrorMessage("Invalid credentials. Please check your username and password.")
-       console.log(error.response)
        })
   }
 
