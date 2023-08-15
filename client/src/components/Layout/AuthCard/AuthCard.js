@@ -1,5 +1,5 @@
 import React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useFormik } from "formik"
 import { useNavigate } from "react-router-dom"
 import * as yup from "yup"
@@ -9,7 +9,25 @@ function AuthCard(){
   const [signUp, setSignUp] = useState(false)
   const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState("")
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({})
+  const [loggedIn, setLoggedIn] = useState(false)
+
+  useEffect(() => {
+    fetch('/user')
+    .then(res => {
+      if (res.ok) {
+        res.json().then(user => {
+          setUser(user)
+          setLoggedIn(true)
+          console.log("you are logged in")
+        }
+    )} else {
+        setUser({});
+        setLoggedIn(false);
+        console.log("not logged in")
+      };
+    })
+    }, []);
 
   const handleClick = () => {
     setSignUp((prevState) => !prevState)
@@ -17,35 +35,37 @@ function AuthCard(){
   //confirm what post request needs to login
   const handleSubmit = (values) => {
     console.log(values)
-    // const url = signUp ? "/signup" : "/login"
-    // fetch(url, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(values),
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       return response.json()
-    //     } else {
-    //       throw new Error("Invalid credentials")
-    //     }
-    //   })
-    //   .then((data) => {
-    //     setUser(data)
-    //     navigate(`/`)
-    //   })
-    //   .catch((error) => {
-    //     console.error(error)
-    //     setErrorMessage("Invalid credentials. Please check your username and password.")
-    //     console.log(error.response)
-    //   })
+     //const url = signUp ? "/signup" : "/login"
+     
+     fetch('/login', {
+         method: "POST",
+         headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(values),
+     })
+       .then((response) => {
+        if (response.ok) {
+           return response.json()
+         } else {
+           throw new Error("Invalid credentials")
+         }
+       })
+       .then((data) => {
+         setUser(data)
+         setLoggedIn(true)
+         navigate(`/`)
+       })
+       .catch((error) => {
+        console.error(error)
+       setErrorMessage("Invalid credentials. Please check your username and password.")
+       console.log(error.response)
+       })
   }
 
   const formSchema = yup.object().shape({
-    // username: yup.string().required("Please enter a username."),
-    // password: yup.string().required("Please enter a password."),
+     username: yup.string().required("Please enter a username."),
+     password: yup.string().required("Please enter a password."),
   })
 
   const formik = useFormik({
