@@ -7,7 +7,7 @@ function Explore() {
     return (
         <>
             <p>Gem's are the secret to knowledge! <br/> <i>Click around and learn about Recycling, earn points, and even get insights into tomorrow's question of the day!</i> </p>
-            <Map />
+            <Map /><br/><br/><br/><br/>
 
         </>
     );
