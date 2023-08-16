@@ -1,0 +1,66 @@
+.gem {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+
+}
+
+.gem.hidden {
+  visibility: hidden;
+}
+
+.gem-image {
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+}
+
+.gem-text {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  top: 0;
+  left: 50%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.gem:hover .gem-text {
+  opacity: 1;
+}
+
+.gem .glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%; /* Adjust the circle size as needed */
+  height: 150%; /* Adjust the circle size as needed */
+  border: 3px solid rgba(255, 255, 255, 0.507); /* Add border to create the white glow */
+  border-radius: 50%;
+  opacity: 10;
+  transition: opacity 0.3s;
+}
+
+.gem:hover .glow {
+  opacity: 1;
+}
+
+.gem:hover,
+.gem.active {
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.911);
+  background-color: rgba(255, 255, 255, 0.795); /* Apply white glow on hover and when clicked */
+}
+
+.gem.active .glow {
+  opacity: 1; /* Show the glow div when the gem is clicked */
+  transform: scale(1); /* Ensure the glow div is at full scale */
+}

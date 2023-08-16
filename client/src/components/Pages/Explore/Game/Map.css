@@ -1,0 +1,15 @@
+.map-container {
+  background-image: url('./map_full.png');
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  grid-template-columns: repeat(32, 1fr);
+  grid-template-rows: repeat(32, 1fr);
+  gap: 0px;
+  margin: 0 auto; /* Horizontally center the map */
+  position: relative;
+  width: 640px;
+  height: 960px;
+  top: 50%; /* Vertically center the map */
+
+}
