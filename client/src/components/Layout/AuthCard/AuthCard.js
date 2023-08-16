@@ -28,7 +28,7 @@ function AuthCard(){
       };
     })
     }, []);
-    /* useEffect function not working; likely User Controller needs to be updated for sessions */ 
+    
 
   const handleClick = () => {
     setSignUp((prevState) => !prevState)
