@@ -9,6 +9,7 @@ class PointsController < ApplicationController
         points = Point.find_all(:user_id)
         render json: points
     end
+    #This user_points controller is not returning anything; need to get this working
 
     def assign_points
         if Question(:answer) == true

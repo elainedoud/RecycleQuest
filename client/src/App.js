@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom" 
+import { useState, useEffect } from "react"
 import Navigation from "./components/Layout/Footer/Navigation/Navigation"
 import Home from "./components/Pages/Home/Home"
 import Explore from "./components/Pages/Explore/Explore"
@@ -14,6 +15,15 @@ import Footer from "./components/Layout/Footer/Footer"
 
 function App() {
 
+  const [viewPoints, setViewPoints] = useState([])
+
+  useEffect(() =>{
+    fetch('/userpoints')
+    .then (res => res.json())
+    .then(viewPoints => setViewPoints(viewPoints))
+    console.log((viewPoints))
+  })
+
   return (
     <div className="App">
       <Router>
@@ -26,7 +36,12 @@ function App() {
             <Route path="/create/location" element={<SubmitLocation />} />
             <Route path="/redeem" element={<Redeem />}/>
             <Route path="/points" element={<Points />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/leaderboard" element={
+            <div>
+              {viewPoints.map(viewPoint => {
+                return <Leaderboard key={viewPoint.id} viewPoint={viewPoint}/> 
+              })}
+              </div>} />
           </Routes>
         <Footer />
       </Router>
