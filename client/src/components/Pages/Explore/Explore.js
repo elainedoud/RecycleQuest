@@ -1,92 +1,14 @@
-import React, { useEffect } from "react";
-import map from './map_full.png';
-import "./Explore.css";
+import React from "react"
+import "./Explore.css"
+import Map from '../Explore/Game/Map'
 
 function Explore() {
-    useEffect(() => {
-        const canvas = document.getElementById('test-canvas');
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(50, 50, 100, 100);
-
-        let tileSize = 32;
-        let tileOutputSize = 1.5;
-        let updatedTileSize = tileSize * tileOutputSize;
-
-        let atlasCol = 17;
-        let atlasRow = 12;
-        let mapCols = 20;
-        let mapRows = 30;
-        let mapHeight = mapRows * tileSize;
-        let mapWidth = mapCols * tileSize;
-
-        const background = [204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204,
-            204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204, 204]
-            
-        const draw = () => {
-            let mapIndex = 0;
-            let sourceX = 0;
-            let sourceY = 0;
-            for (let col = 0; col < mapHeight; col += tileSize) {
-                for (let row = 0; row < mapWidth; row += tileSize) {
-                    let tileVal = background[mapIndex];
-                    if (tileVal !== 0) {
-                        tileVal -= 1;
-                        sourceY = Math.floor(tileVal / atlasCol) * tileSize;
-                        sourceX = (tileVal % atlasCol) * tileSize;
-                        ctx.drawImage(tileAtlas, sourceX, sourceY, tileSize,
-                            tileSize, row * tileOutputSize, col * tileOutputSize,
-                            updatedTileSize, updatedTileSize);
-                    }
-                    mapIndex++;
-                }
-            }
-        };
-
-        const tileAtlas = new Image();
-        tileAtlas.src = './map_sprite.png';
-        tileAtlas.onload = () => draw();
-
-        // Cleanup function for useEffect
-        return () => {
-            tileAtlas.onload = null; // Remove the onload event listener
-        };
-    }, []); // Empty dependency array means this effect runs once after the initial render
-
+    // make this component have an info button that displays the p tag below
     return (
         <>
-            <p>Here users can learn by exploring our village!</p>
-            <p>Level 1 Map Design</p>
-            <img src={map} alt="map sprite sheet"/>
-            <canvas id="test-canvas"></canvas>
+            <p>Gem's are the secret to knowledge! <br/> <i>Click around and learn about Recycling, earn points, and even get insights into tomorrow's question of the day!</i> </p>
+            <Map />
+
         </>
     );
 }
