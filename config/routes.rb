@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/question', to: "questions#index"
   get '/allquestions', to: "questions#show_all"
 
-  get '/user', to: "users#index"
+  get '/user', to: "users#show"
   get '/allusers', to: "users#show_all"
   post '/newuser', to: "users#create"
 
