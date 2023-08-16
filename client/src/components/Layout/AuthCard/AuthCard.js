@@ -11,6 +11,7 @@ function AuthCard(){
   const [errorMessage, setErrorMessage] = useState("")
   const [user, setUser] = useState({})
   const [loggedIn, setLoggedIn] = useState(false)
+  const [button, setButton] = useState("Log In!")
 
   useEffect(() => {
     fetch('/user')
@@ -19,12 +20,11 @@ function AuthCard(){
         res.json().then(user => {
           setUser(user)
           setLoggedIn(true)
-          console.log("you are logged in")
+          setButton("Log Out!")
         }
     )} else {
         setUser({});
         setLoggedIn(false);
-        console.log("not logged in")
       };
     })
     }, []);
@@ -33,12 +33,21 @@ function AuthCard(){
   const handleClick = () => {
     setSignUp((prevState) => !prevState)
   }
-  //confirm what post request needs to login
+  
   const handleSubmit = (values) => {
-    console.log(values)
-     //const url = signUp ? "/signup" : "/login"
+
+    if (loggedIn == true){
+      setUser({})
+      fetch('/logout', {
+        method: "DELETE"
+      })
+      setLoggedIn(false)
+      navigate(`/`)
+    }
+    else {
+     const url = signUp ? "/newuser" : "/login"
      
-     fetch('/login', {
+     fetch(url, {
          method: "POST",
          headers: {
          "Content-Type": "application/json",
@@ -59,22 +68,31 @@ function AuthCard(){
        })
        .catch((error) => {
        setErrorMessage("Invalid credentials. Please check your username and password.")
+       console.log(errorMessage)
        })
-  }
-
+  }    
+}
+  
   const formSchema = yup.object().shape({
-     username: yup.string().required("Please enter a username."),
+      username: yup.string().required("Please enter a username."),
      password: yup.string().required("Please enter a password."),
-  })
+   })
+
+   const alreadyLoggedIn = yup.object().shape({
+    username: "",
+    password: "",
+   })
 
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
-    validationSchema: formSchema,
+    validationSchema: loggedIn ? alreadyLoggedIn : formSchema,
     onSubmit: handleSubmit,
   })
+
+  
 
   return (
     <div className="auth">
@@ -114,7 +132,7 @@ function AuthCard(){
             <br />
           </>
         )}
-        <button className="action-button" type="submit">{signUp ? "Sign Up!" : "Log In!"}</button>
+        <button className="action-button" type="submit">{signUp ? "Sign Up!" : button}</button>
 
         <p className="login">{signUp ? "Already a member?" : "Not a member?"}</p>
         <button className="passive" onClick={handleClick}>
