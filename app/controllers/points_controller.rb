@@ -4,13 +4,24 @@ class PointsController < ApplicationController
         points = Point.all 
         render json: points
     end
+    #Points#index pulls an array of all the separate "points".  It has amounts of points,
+    # username id, question id, ect.
+
+    def points_users
+        points_users = User.all
+        render json: points_users
+    end
+
+    #An array of all users, including usernames, passwords, and date of birth
 
     def user_points
-        points = Point.find_all(:user_id)
-        render json: points
+        user_points = Point.select(:user_id, 'COUNT(user_id)').group(:user_id)
+        render json: user_points
     end
-    #This user_points controller is not returning anything; need to get this working
-
+  #This is creating an object of arrays that contains each user_id (ie 1) and count of points
+    # but it does not take into account that each point has an amount of 2
+  # Since change was made to Point model, can we select by username?
+    
     def assign_points
         if Question(:answer) == true
             point = Point.create(point_params)

@@ -18,7 +18,7 @@ function App() {
   const [viewPoints, setViewPoints] = useState([])
 
   useEffect(() =>{
-    fetch('/userpoints')
+    fetch('/allpoints')
     .then (res => res.json())
     .then(viewPoints => setViewPoints(viewPoints))
     console.log((viewPoints))

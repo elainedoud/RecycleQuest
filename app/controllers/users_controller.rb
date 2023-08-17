@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     end
 
     def show_all
-        users = User.all
+        users = User.includes(:points)
         render json: users
     end
 

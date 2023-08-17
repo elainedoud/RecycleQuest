@@ -16,11 +16,12 @@ Rails.application.routes.draw do
   post '/assignpoints', to: "points#assign_points"
   get '/userpoints', to: "points#user_points"
   get '/allpoints', to: "points#index"
+  get '/pointsusers', to: "points#points_users"
 
   get '/question', to: "questions#index"
   get '/allquestions', to: "questions#show_all"
 
-  get '/user', to: "users#show"
+  get '/user', to: "users#index"
   get '/allusers', to: "users#show_all"
   post '/newuser', to: "users#create"
 
