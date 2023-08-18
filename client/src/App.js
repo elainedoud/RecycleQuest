@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom" 
-import Navigation from "./components/Layout/Footer/Navigation/Navigation"
 import Home from "./components/Pages/Home/Home"
 import Explore from "./components/Pages/Explore/Explore"
 import Locate from "./components/Pages/Locate/Locate"
@@ -8,34 +7,36 @@ import SubmitLocation from "./components/Pages/SubmitLocation/SubmitLocation"
 import Points from "./components/Pages/Points/Points"
 import Leaderboard from "./components/Pages/Leaderboard/Leaderboard"
 import AuthCard from "./components/Layout/AuthCard/AuthCard"
-import './App.css'
 import Header from "./components/Layout/Header/Header"
 import Footer from "./components/Layout/Footer/Footer"
 import { useState } from "react"
+import './App.css'
 
 function App() {
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState([null])
+  const [userPoints, setUserPoints] = useState(0)
 
-
-  return (
+  return(
     <div className="App">
       <Router>
         <Header />
           <Routes>
-            <Route path="/login" element={<AuthCard setUser={setUser}/>} />
-            <Route path="/" element={<Home user={user}/>} />
-            <Route path="/explore" element={<Explore />} />
+            <Route path="/" element={<AuthCard setUser={setUser}/>} />
+            <Route path="/home" element={<Home user={user} setUserPoints={setUserPoints}/>} />
+            <Route path="/explore" element={<Explore user={user} setUserPoints={setUserPoints}/>} />
             <Route path="/locate" element={<Locate />} />
             <Route path="/create/location" element={<SubmitLocation />} />
-            <Route path="/redeem" element={<Redeem />}/>
-            <Route path="/points" element={<Points />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/redeem" element={<Redeem user={user} setUserPoints={setUserPoints}/>}/>
+            <Route path="/points" element={<Points user={user} setUserPoints={setUserPoints}/>} />
+            <Route path="/leaderboard" element={<Leaderboard user={user}/>} />
           </Routes>
         <Footer />
       </Router>
     </div>
   )
+
+
 }
 
 export default App
