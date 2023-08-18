@@ -1,79 +1,75 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import NewLocation from './NewLocation'
 import './Locate.css'
 
-const Locate = () => {
+const Locate = ({ userPoints, setUserPoints }) => {
+  // Sample locations data
   const [locations, setLocations] = useState([
     {
-      'ID': 1,
-      'Name': 'Location A',
-      'Address 1': '123 Main St',
-      'Address 2': 'Suite 456',
-      'Accepted Recyclables': 'Plastic, Paper',
-      'Created By': 'User123',
+      'id': 1,
+      'name': 'Location A',
+      'address1': '123 Main St',
+      'address2': 'Suite 456',
+      'zip': 10002,
+      'recyclables': 'Plastic, Paper',
+      'created_by': 'User123',
     },
     {
-      'ID': 2,
-      'Name': 'Location B',
-      'Address 1': '456 Elm St',
-      'Address 2': '',
-      'Accepted Recyclables': 'Glass, Aluminum',
-      'Created By': 'User456',
+      'id': 2,
+      'name': 'Location B',
+      'address1': '456 Elm St',
+      'address2': '',
+      'zip': 7305,
+      'recyclables': 'Glass, Aluminum',
+      'created_by': 'User456',
     },
     // Add more sample locations as needed
   ])
-  
-  const [showSubmitWindow, setShowSubmitWindow] = useState(false)
-  
-  // useEffect(() => {
-  //   // Fetch data from /locations endpoint
-  //   fetch('/locations')
-  //     .then(response => response.json())
-  //     .then(data => setLocations(data))
-  //     .catch(error => console.error('Error fetching data:', error))
-  // }, [])
 
-  const initialValues = {
-    name: '',
-    location: '',
-  }
+  // Filtered locations for search
+  const [filteredLocations, setFilteredLocations] = useState(locations)
 
-  const onSubmit = values => {
-    console.log(values)
-    setShowSubmitWindow(false)
-    // fetch('/addLocation', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(values),
-    // })
-    //   .then(response => response.json())
-    //   .then(newLocation => {
-    //     // Update the locations state with the new location
-    //     setLocations(prevLocations => [...prevLocations, newLocation])
-
-    //     // Close the submit window
-    //     setShowSubmitWindow(false)
-    //   })
-    //   .catch(error => {
-    //     console.error('Error adding new location:', error)
-    //     // Handle error, show an error message, etc.
-    //   })
-  }
-
+  // Formik form handling
   const formik = useFormik({
-    initialValues,
-    onSubmit,
+    initialValues: {
+      location: '',
+    },
+    onSubmit: values => {
+      console.log(values) // Log the submitted form values
+      handleSearch(values) // Trigger search after submission
+    },
   })
 
+  // Function to handle search based on user input
+  const handleSearch = ({ location }) => {
+    const filtered = locations.filter(loc => {
+      return (
+        location === '' || loc.zip === parseInt(location) // Compare zip directly
+      )
+    })
+    setFilteredLocations(filtered)
+  }
+
+  const [showSubmitWindow, setShowSubmitWindow] = useState(false)
+
+  // Function to open the submit window
   const openSubmitWindow = () => {
     setShowSubmitWindow(true)
   }
 
+  // Function to cancel submission
   const onCancelSubmit = () => {
     setShowSubmitWindow(false)
+  }
+
+  // Function to handle new location submission
+  const onNewLocationSubmit = values => {
+    setShowSubmitWindow(false)
+    const updatedLocations = [...locations, values]
+    setLocations(updatedLocations)
+    setFilteredLocations(updatedLocations)
+    setUserPoints(userPoints + 25)
   }
 
   return (
@@ -82,15 +78,8 @@ const Locate = () => {
         <div className="search-bar">
           <input
             type="text"
-            name="name"
-            placeholder="Search by name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-          />
-          <input
-            type="text"
             name="location"
-            placeholder="Search by location"
+            placeholder="Search by Zip Code"
             value={formik.values.location}
             onChange={formik.handleChange}
           />
@@ -103,23 +92,19 @@ const Locate = () => {
         </div>
       </div>
       <div className="card-container">
-        {locations && locations.map(location => (
-          <div key={location.ID} className="location-card">
-            <h3>{location.Name}</h3>
-            <p>{location['Address 1']}</p>
-            <p>{location['Address 2']}</p>
-            <p>Recyclables: {location['Accepted Recyclables']}</p>
-            <p>Created By: {location['Created By']}</p>
+        {(filteredLocations.length > 0 ? filteredLocations : locations).map(location => (
+          <div key={location.id} className="location-card">
+            <h3>{location.name}</h3>
+            <p>{location.address1}</p>
+            <p>{location.address2}</p>
+            <p>Recyclables: {location.recyclables}</p>
+            <p>Created By: {location.created_by}</p>
           </div>
         ))}
       </div>
       {showSubmitWindow && (
         <div className="submit-location-window">
-            {showSubmitWindow && (
-              <div className="submit-location-window">
-                <NewLocation onSubmit={onSubmit} onCancel={onCancelSubmit} />
-              </div>
-            )}
+          <NewLocation onNewLocationSubmit={onNewLocationSubmit} onCancel={onCancelSubmit} />
         </div>
       )}
     </div>
