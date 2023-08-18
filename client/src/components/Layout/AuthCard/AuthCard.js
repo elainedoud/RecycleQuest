@@ -16,27 +16,29 @@ function AuthCard(){
   useEffect(() => {
     fetch('/user')
     .then(res => {
+      console.log(res)
       if (res.ok) {
         res.json().then(user => {
           setUser(user)
           setLoggedIn(true)
           setButton("Log Out!")
+          console.log("You are logged in")
         }
     )} else {
         setUser({});
         setLoggedIn(false);
+        console.log("You are logged out")
       };
     })
     }, []);
     
-
   const handleClick = () => {
     setSignUp((prevState) => !prevState)
   }
   
   const handleSubmit = (values) => {
 
-    if (loggedIn == true){
+    if (loggedIn === true){
       setUser({})
       fetch('/logout', {
         method: "DELETE"
