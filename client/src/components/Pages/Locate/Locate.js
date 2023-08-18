@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
+import NewLocation from './NewLocation'
 import './Locate.css'
 
 const Locate = () => {
@@ -21,9 +22,10 @@ const Locate = () => {
       'Created By': 'User456',
     },
     // Add more sample locations as needed
-  ]);
-  const [showSubmitWindow, setShowSubmitWindow] = useState(false) // State to control the submit window
-
+  ])
+  
+  const [showSubmitWindow, setShowSubmitWindow] = useState(false)
+  
   // useEffect(() => {
   //   // Fetch data from /locations endpoint
   //   fetch('/locations')
@@ -38,8 +40,27 @@ const Locate = () => {
   }
 
   const onSubmit = values => {
-    // Handle form submission here
     console.log(values)
+    setShowSubmitWindow(false)
+    // fetch('/addLocation', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(values),
+    // })
+    //   .then(response => response.json())
+    //   .then(newLocation => {
+    //     // Update the locations state with the new location
+    //     setLocations(prevLocations => [...prevLocations, newLocation])
+
+    //     // Close the submit window
+    //     setShowSubmitWindow(false)
+    //   })
+    //   .catch(error => {
+    //     console.error('Error adding new location:', error)
+    //     // Handle error, show an error message, etc.
+    //   })
   }
 
   const formik = useFormik({
@@ -49,6 +70,10 @@ const Locate = () => {
 
   const openSubmitWindow = () => {
     setShowSubmitWindow(true)
+  }
+
+  const onCancelSubmit = () => {
+    setShowSubmitWindow(false)
   }
 
   return (
@@ -83,14 +108,18 @@ const Locate = () => {
             <h3>{location.Name}</h3>
             <p>{location['Address 1']}</p>
             <p>{location['Address 2']}</p>
-            <p>{location['Accepted Recyclables']}</p>
-            <p>{location['Created By']}</p>
+            <p>Recyclables: {location['Accepted Recyclables']}</p>
+            <p>Created By: {location['Created By']}</p>
           </div>
         ))}
       </div>
       {showSubmitWindow && (
         <div className="submit-location-window">
-          {/* Add your submit location form here */}
+            {showSubmitWindow && (
+              <div className="submit-location-window">
+                <NewLocation onSubmit={onSubmit} onCancel={onCancelSubmit} />
+              </div>
+            )}
         </div>
       )}
     </div>
