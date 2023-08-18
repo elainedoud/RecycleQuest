@@ -1,6 +1,5 @@
 body {
     text-align: center;
-    
 }
 
 .daily-points {
@@ -43,3 +42,8 @@ p.points-detail {
     height: 20px;
   }
 
+p.redeemable{
+    color: var(--dark-green);
+    font-size: 12px;
+    text-transform: uppercase;
+}
