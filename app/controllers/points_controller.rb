@@ -4,12 +4,9 @@ class PointsController < ApplicationController
         points = Point.all 
         render json: points
     end
-
-    def user_points
-        points = Point.find_all(:user_id)
-        render json: points
-    end
-
+    #Points#index pulls an array of all the separate "points".  It has amounts of points,
+    # username id, question id, ect.
+    
     def assign_points
         if Question(:answer) == true
             point = Point.create(point_params)

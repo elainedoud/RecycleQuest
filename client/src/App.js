@@ -12,14 +12,14 @@ import './App.css'
 import Header from "./components/Layout/Header/Header"
 import Footer from "./components/Layout/Footer/Footer"
 
-function App() {
+function App({user}) {
 
   return (
     <div className="App">
       <Router>
         <Header />
           <Routes>
-            <Route path="/login" element={<AuthCard/>} />
+            <Route path="/login" element={<AuthCard />} />
             <Route path="/" element={<Home/>} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/locate" element={<Locate />} />
