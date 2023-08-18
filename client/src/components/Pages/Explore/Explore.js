@@ -1,5 +1,6 @@
-import React from "react"
-import "./Explore.css"
+import React from 'react'
+import { MapInteractionCSS } from 'react-map-interaction'
+import './Explore.css'
 import Map from '../Explore/Game/Map'
 
 function Explore() {
@@ -7,10 +8,12 @@ function Explore() {
     return (
         <>
             <p>Gem's are the secret to knowledge! <br/> <i>Click around and learn about Recycling, earn points, and even get insights into tomorrow's question of the day!</i> </p>
+            <MapInteractionCSS>
             <Map /><br/><br/><br/><br/>
+            </MapInteractionCSS>
 
         </>
-    );
+    )
 }
 
-export default Explore;
+export default Explore
