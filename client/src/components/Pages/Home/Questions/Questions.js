@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import "./Questions.css"
 
-function Questions({setUserPoints}) {
+function Questions({setUserPoints, userPoints}) {
   const [totalPoints, setTotalPoints] = useState(200)
   const [questions] = useState([{
     "id": 1,
@@ -39,8 +39,8 @@ function Questions({setUserPoints}) {
 
   useEffect(() => {
     if (currentQuestionIndex >= questions.length) {
-      console.log(points)
-      let newTotal = totalPoints + points
+    
+      let newTotal = userPoints + points
       setUserPoints(newTotal)
         // fetch(`/addPoints/${userId}/${pointsToAdd}`, {
         //     method: "POST",

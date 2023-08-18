@@ -4,32 +4,34 @@ import Explore from "./components/Pages/Explore/Explore"
 import Locate from "./components/Pages/Locate/Locate"
 import Redeem from "./components/Pages/Redeem/Redeem"
 import SubmitLocation from "./components/Pages/SubmitLocation/SubmitLocation"
-import Points from "./components/Pages/Points/Points"
+import Points from "./components/Pages/PointsHistory/Points"
 import Leaderboard from "./components/Pages/Leaderboard/Leaderboard"
 import AuthCard from "./components/Layout/AuthCard/AuthCard"
 import Header from "./components/Layout/Header/Header"
 import Footer from "./components/Layout/Footer/Footer"
 import { useState } from "react"
 import './App.css'
+import PointsTab from "./components/Layout/Header/Points/PointsTab"
 
 function App() {
 
   const [user, setUser] = useState([null])
-  const [userPoints, setUserPoints] = useState(0)
+  const [userPoints, setUserPoints] = useState(200)
 
   return(
     <div className="App">
       <Router>
         <Header />
+        <PointsTab user={user} userPoints={userPoints}/>
           <Routes>
             <Route path="/" element={<AuthCard setUser={setUser}/>} />
-            <Route path="/home" element={<Home user={user} setUserPoints={setUserPoints}/>} />
-            <Route path="/explore" element={<Explore user={user} setUserPoints={setUserPoints}/>} />
-            <Route path="/locate" element={<Locate />} />
+            <Route path="/home" element={<Home user={user} userPoints={userPoints} setUserPoints={setUserPoints}/>} />
+            <Route path="/explore" element={<Explore user={user} setUserPoints={setUserPoints} userPoints={userPoints}/>} />
+            <Route path="/locate" element={<Locate userPoints={userPoints} setUserPoints={setUserPoints}/>} />
             <Route path="/create/location" element={<SubmitLocation />} />
             <Route path="/redeem" element={<Redeem user={user} setUserPoints={setUserPoints}/>}/>
             <Route path="/points" element={<Points user={user} setUserPoints={setUserPoints}/>} />
-            <Route path="/leaderboard" element={<Leaderboard user={user}/>} />
+            <Route path="/leaderboard" element={<Leaderboard user={user} userPoints={userPoints}/>} />
           </Routes>
         <Footer />
       </Router>

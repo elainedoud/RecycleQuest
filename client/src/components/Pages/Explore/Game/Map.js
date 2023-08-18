@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import Knowledge from './Knowledge';
-import Gem from './Gem';
-import './Map.css';
-import './Gem.css';
+import React, { useState } from 'react'
+import Knowledge from './Knowledge'
+import Gem from './Gem'
+import './Map.css'
+import './Gem.css'
 
-function Map() {
+function Map({user, userPoints, setUserPoints}) {
+  console.log(userPoints)
   const initialGems = [
     { id: 1, top: 450, left: 500, text: 'Oliver Puddlebrook says: "Clean aluminum cans and rinsed glass bottles can always be recycled.', hidden: false },
     { id: 2, top: 1250, left: 490, text: 'Felix Whimsy says: "Paper, including junk mail, can almost always be recycled. The only exceptions are shredded paper or paper that is contaminated (ie. food waste)."', hidden: false },
@@ -12,27 +13,31 @@ function Map() {
     { id: 4, top: 3520, left: 2245, text: `Amelia Starshine says: "Each ton of paper that is recycled saves seventeen trees."`, hidden: false },
     { id: 5, top: 3050, left: 480, text: 'Simon Feathers says: "When in doubt, do not recycle an item that you are unsure of.  This could contaminate the other items in the recycling bin."', hidden: false },
 
-  ];
+  ]
 
-  const [gems, setGems] = useState(initialGems);
-  const [selectedGem, setSelectedGem] = useState(null);
+  const [gems, setGems] = useState(initialGems)
+  const [selectedGem, setSelectedGem] = useState(null)
 
   const openKnowledge = (gem) => {
-    setSelectedGem(gem);
-  };
+    setSelectedGem(gem)
+  }
 
   const closeKnowledge = () => {
     if (selectedGem) {
       const updatedGems = gems.map((gem) => {
         if (gem.id === selectedGem.id) {
-          return { ...gem, hidden: true }; // Hide the selected gem
+          //value of gems tbd
+          const newPoints = userPoints + 100
+          setUserPoints(newPoints)
+          return { ...gem, hidden: true }
+
         }
-        return gem;
-      });
-      setGems(updatedGems);
-      setSelectedGem(null);
+        return gem
+      })
+      setGems(updatedGems)
+      setSelectedGem(null)
     }
-  };
+  }
 
   return (
     <div className="map-container">
@@ -48,10 +53,10 @@ function Map() {
         ))}
       </div>
       {selectedGem && (
-        <Knowledge text={selectedGem.text} onClose={closeKnowledge} />
+        <Knowledge text={selectedGem.text} onClose={closeKnowledge} userPoints={userPoints} setUserPoints={setUserPoints} />
       )}
     </div>
-  );
+  )
 }
 
-export default Map;
+export default Map

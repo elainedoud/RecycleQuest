@@ -4,13 +4,12 @@ import AuthCard from "../../Layout/AuthCard/AuthCard"
 import Countdown from "./Countdown"
 import Questions from "./Questions/Questions"
 
-function Home({ user, setUserPoints }) {
-    
+function Home({ user, userPoints, setUserPoints }) {
     const gem = <img src="https://freepngimg.com/save/56561-gem-download-hq-png/554x361" className="gems" alt="green-gem" />
 
     // logic and variables for points and timer
     const [points, setPoints] = useState({
-        total_points: 200,
+        total_points: userPoints,
         last_daily: "2023-08-14T11:05:25.381Z"
     })
     const lastDailyTime = new Date(Date.parse(points.last_daily))
@@ -52,6 +51,7 @@ function Home({ user, setUserPoints }) {
                 total_points: prevPoints.total_points + pointsToAdd,
                 last_daily: new Date().toISOString() // Update last_daily to the current time in ISO format
             }))
+            setUserPoints(userPoints + pointsToAdd)
             setTimerStopped(false) // Restart the timer
             setTimeRemaining(24 * 60 * 60 * 1000) // Set timeRemaining to 24 hours in milliseconds
         }
@@ -77,7 +77,7 @@ function Home({ user, setUserPoints }) {
             <div className="daily-points">
             <p className="points-detail">
                 <div className="points-card">
-                    <b>Current Points :</b> {points.total_points} {gem} <br /><br />
+                    <b>Current Points :</b> {userPoints} {gem} <br /><br />
                     <b>Today's Daily Bonus :</b> 100 {gem}<br /><br />
                     {!canRedeem && <Countdown timeRemaining={timeRemaining} />} 
                 </div>
@@ -88,7 +88,7 @@ function Home({ user, setUserPoints }) {
             </div>
 
             <div className="daily-questions"> 
-            <Questions setUserPoints={setUserPoints}/>
+            <Questions setUserPoints={setUserPoints} userPoints={userPoints}/>
             </div>
         </div>
     )
