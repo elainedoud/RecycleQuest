@@ -1,0 +1,57 @@
+
+.card {
+    background-color: var(--trans-white);
+    color: var(--dark-green);
+    padding: 50px 10px ;
+    border-radius: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    max-width: 60%;
+    margin: auto;
+ }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .option {
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    color: var(--dark-green)
+  }
+  
+  .option:hover {
+    background-color: var(--green);
+    color: var(--violet)
+  }
+  
+  .correct-answer {
+    color: var(--green);
+    font-weight: bold;
+  }
+  
+  .wrong-answer {
+    color: var(--purple);
+    font-weight: bold;
+  }
+  
+  .completed-message {
+    color: var(--light-blue);
+    font-weight: bold;
+  }
+  
+  .completed-score {
+    color: #8A2BE2;
+    font-weight: bold;
+  }
+
+  .query{
+    color: var(--violet);
+  }

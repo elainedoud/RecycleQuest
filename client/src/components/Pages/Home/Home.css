@@ -5,7 +5,7 @@ body {
 .daily-points {
     justify-content: center;
     align-items: center; 
-    height: 50vh; 
+
     max-width: 60%;
     margin-left: auto;
     margin-right: auto;
@@ -17,6 +17,8 @@ button.redeem {
     color: #fff;   
     border-radius: 20px;
     width: 100%;
+    /* margin-top: 10px; */
+    margin-bottom: 15px;
 }
 
 p {
@@ -34,7 +36,6 @@ p.points-detail {
     padding: 50px 10px ;
     border-radius: 30px;
     text-transform: uppercase;
-    
 }
 
 .gems {
