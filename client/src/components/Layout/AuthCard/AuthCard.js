@@ -31,14 +31,13 @@ function AuthCard({setUser}){
     })
     }, []);
     
-
   const handleClick = () => {
     setSignUp((prevState) => !prevState)
   }
   
   const handleSubmit = (values) => {
 
-    if (loggedIn == true){
+    if (loggedIn === true){
       setUser({})
       fetch('/logout', {
         method: "DELETE"

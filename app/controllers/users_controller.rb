@@ -15,6 +15,11 @@ class UsersController < ApplicationController
         render json: users
     end
 
+    def leaderboard
+        userpoints = User.joins(:points).select(:username, 'COUNT(username)').group(:username)
+        render json: userpoints 
+    end
+
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id

@@ -13,7 +13,7 @@ import { useState } from "react"
 import './App.css'
 import PointsTab from "./components/Layout/Header/Points/PointsTab"
 
-function App() {
+function App({user}) {
 
   const [user, setUser] = useState([null])
   const [userPoints, setUserPoints] = useState(200)
