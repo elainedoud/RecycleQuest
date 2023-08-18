@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFormik } from 'formik'
 
-const NewLocation = ({ onSubmit, onCancel }) => {
+const NewLocation = ({ onCancel, filteredLocations }) => {
   const initialValues = {
     name: '',
     address1: '',
@@ -11,7 +11,14 @@ const NewLocation = ({ onSubmit, onCancel }) => {
 
   const formik = useFormik({
     initialValues,
-    onSubmit,
+    onSubmit: values => {
+      values.created_by = 0
+      const updatedLocations = {filteredLocations, values}
+      console.log(updatedLocations)
+      // setLocations(updatedLocations)
+      // setFilteredLocations(updatedLocations)
+      // onNewLocationSubmit()
+    },
   })
 
   return (
@@ -48,7 +55,7 @@ const NewLocation = ({ onSubmit, onCancel }) => {
         <label htmlFor="recyclables">Accepted Recyclables</label>
         <input
           type="text"
-          id="recyclables"NewLocation
+          id="recyclables"
           name="recyclables"
           value={formik.values.recyclables}
           onChange={formik.handleChange}
