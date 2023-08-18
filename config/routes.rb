@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/user', to: "users#index"
   get '/allusers', to: "users#show_all"
   post '/newuser', to: "users#create"
+  get '/leaderboard', to: "users#leaderboard"
 
 
 end

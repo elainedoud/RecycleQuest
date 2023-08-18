@@ -10,7 +10,7 @@ function Leaderboard({viewPoint}){
                     <h4>LEADERBOARD</h4>
                 </div>
                 <div>
-                    <p>{viewPoint.user_id}</p>
+                    <p>{viewPoint.username}</p>
                     <p>{viewPoint.count}</p>
                  </div>
                 <div>

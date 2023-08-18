@@ -11,8 +11,13 @@ class UsersController < ApplicationController
     end
 
     def show_all
-        users = User.includes(:points)
+        users = User.all
         render json: users
+    end
+
+    def leaderboard
+        userpoints = User.joins(:points).select(:username, 'COUNT(username)').group(:username)
+        render json: userpoints 
     end
 
     def create
