@@ -4,23 +4,29 @@ import { useState, useEffect } from "react"
 function Leaderboard(){
 
     const [viewPoints, setViewPoints] = useState([])
+    const [sortedPoints, setSortedPoints] = useState([])
 
     useEffect(() =>{
       fetch('/leaderboard')
       .then (res => res.json())
-      .then(viewPoints => setViewPoints(viewPoints))
-    })
-
+      .then(viewPoints => {
+        setViewPoints(viewPoints)
+        const sortedPoints = viewPoints.sort((a,b) => b.count - a.count)
+        setSortedPoints(sortedPoints)
+      })
+    }, [])
+    
+    
     return(
         <div>
                 <div>
                     <h4>LEADERBOARD</h4>
                 </div>
-                {viewPoints.map(viewPoint =>{
-                    return <div key={viewPoint.id} viewPoint={viewPoint}>
-                            <p>{viewPoint.username}</p>
-                            <p>{viewPoint.count*2}</p>
-                    </div>
+                {sortedPoints.map(sortedPoint =>{
+                    return <div key={sortedPoint.id} sortedPoint={sortedPoint}>
+                             <div class="column1">{sortedPoint.username}</div>    
+                             <div class="column2">{sortedPoint.count*2}</div>
+                        </div>
                 })}
                 <div>
                     <p>Compare all users to our logged in user and show their ranking</p>
@@ -29,7 +35,5 @@ function Leaderboard(){
         </div>
     )
 }
-//For some reason, "leadeboard" and notes in <p> are repeating for every user; will want to change this once
-// we're pulling the correct information
 
 export default Leaderboard

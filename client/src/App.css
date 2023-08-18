@@ -72,3 +72,16 @@ h1, h2, h3, h4 {
     background-color: var(--green);
     
   }
+
+  .column1{
+    float: left;
+    color: #9fd0e1;
+    text-align: right;
+    width: 55%;
+  }
+
+  .column2{
+    float: left;
+    color: yellow;
+    width: 45%;
+  }
