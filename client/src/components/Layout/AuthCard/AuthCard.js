@@ -5,22 +5,24 @@ import { useNavigate } from "react-router-dom"
 import * as yup from "yup"
 import "./AuthCard.css"
 
-function AuthCard(){
+function AuthCard({setUser}){
   const [signUp, setSignUp] = useState(false)
   const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState("")
-  const [user, setUser] = useState({})
   const [loggedIn, setLoggedIn] = useState(false)
   const [button, setButton] = useState("Log In!")
 
   useEffect(() => {
     fetch('/user')
     .then(res => {
+      console.log(res)
       if (res.ok) {
         res.json().then(user => {
           setUser(user)
           setLoggedIn(true)
           setButton("Log Out!")
+          console.log("user is logged in")
+          setUser(user)
         }
     )} else {
         setUser({});

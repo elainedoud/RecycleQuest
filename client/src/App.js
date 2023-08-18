@@ -11,16 +11,20 @@ import AuthCard from "./components/Layout/AuthCard/AuthCard"
 import './App.css'
 import Header from "./components/Layout/Header/Header"
 import Footer from "./components/Layout/Footer/Footer"
+import { useState } from "react"
 
 function App() {
+
+  const [user, setUser] = useState(null)
+
 
   return (
     <div className="App">
       <Router>
         <Header />
           <Routes>
-            <Route path="/login" element={<AuthCard/>} />
-            <Route path="/" element={<Home/>} />
+            <Route path="/login" element={<AuthCard setUser={setUser}/>} />
+            <Route path="/" element={<Home user={user}/>} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/locate" element={<Locate />} />
             <Route path="/create/location" element={<SubmitLocation />} />
