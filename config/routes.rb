@@ -14,9 +14,7 @@ Rails.application.routes.draw do
   get '/alllocations', to: "locations#show_all"
 
   post '/assignpoints', to: "points#assign_points"
-  get '/userpoints', to: "points#user_points"
   get '/allpoints', to: "points#index"
-  get '/pointsusers', to: "points#points_users"
 
   get '/question', to: "questions#index"
   get '/allquestions', to: "questions#show_all"

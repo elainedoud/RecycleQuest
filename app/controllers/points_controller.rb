@@ -6,13 +6,6 @@ class PointsController < ApplicationController
     end
     #Points#index pulls an array of all the separate "points".  It has amounts of points,
     # username id, question id, ect.
-
-    def user_points
-        user_points = Point.select(:user_id, 'COUNT(user_id)').group(:user_id)
-        render json: user_points
-   end
-  #This is creating an object of arrays that contains each user_id (ie 1) and count of points
-    # but it only displays user_id and does not take into account that each point has an amount of 2
     
     def assign_points
         if Question(:answer) == true
