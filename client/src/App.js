@@ -13,6 +13,7 @@ import { useState, useContext } from "react"
 import './App.css'
 import PointsTab from "./components/Layout/Header/Points/PointsTab"
 import UserContext from "./components/Context/UserContext"
+import Logout from "./components/Layout/Logout/Logout"
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
             <Route path="/points" element={<Points user={user} setUserPoints={setUserPoints}/>} />
             <Route path="/leaderboard" element={<Leaderboard user={user} userPoints={userPoints}/>} />
           </Routes>
+          <Logout />
         <Footer />
       </Router>
     </div>

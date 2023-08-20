@@ -1,0 +1,29 @@
+.logout-button {
+    position: fixed;
+    bottom: 80px; /* Adjust the value to your desired spacing */
+    right: -80px;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--dark-green);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  .logout-tab {
+    position: fixed;
+    right: 10px;
+    top: 110px;
+    z-index: 1000;
+    background-color: var(--darkest-blue);
+    color: white;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
