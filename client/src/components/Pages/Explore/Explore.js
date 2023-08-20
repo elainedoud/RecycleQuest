@@ -11,9 +11,9 @@ function Explore({user, setUserPoints, userPoints}) {
         <div>
         <Info text={"Gem's are the secret to knowledge! Click around and learn about Recycling, earn points, and even get insights into tomorrow's question of the day!"}/>
         </div>
-            <MapInteractionCSS>
+            {/* <MapInteractionCSS> */}
             <Map user={user} setUserPoints={setUserPoints} userPoints={userPoints}/><br/><br/><br/><br/>
-            </MapInteractionCSS>
+            {/* </MapInteractionCSS> */}
 
         </>
     )
