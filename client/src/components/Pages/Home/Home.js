@@ -7,6 +7,7 @@ import Info from "../../Layout/Info/Info"
 
 function Home({ user, userPoints, setUserPoints }) {
     const gem = <img src="https://freepngimg.com/save/56561-gem-download-hq-png/554x361" className="gems" alt="green-gem" />
+    const [quizStarted, setQuizStarted] = useState(false)
 
     // logic and variables for points and timer
     const [points, setPoints] = useState({
@@ -76,22 +77,31 @@ function Home({ user, userPoints, setUserPoints }) {
     return (
         <div>
             <Info text={"Daily bonus can be redeemed once every 24 hours. Daily questions refresh every 24 hours and are based on knowledge collected from yesterday's gems quest."}/>
+            
             <div className="daily-points">
-            <p className="points-detail">
-                <div className="points-card">
-                    <b>Current Points :</b> {userPoints} {gem} <br /><br />
-                    <b>Today's Daily Bonus :</b> 100 {gem}<br /><br />
-                    {!canRedeem && <Countdown timeRemaining={timeRemaining} />} 
-                </div>
-            </p>
-            {canRedeem && (
-                <button className="redeem" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
-            )}
+                {!canRedeem ? (
+                        <div className="redeem-status">
+                            <Countdown timeRemaining={timeRemaining} />
+                        </div>
+                    ) : (
+                        <div className="redeem-status">
+                            <b>Today's Daily Bonus :</b> 100 {gem}<vbr/>
+                            {/* You can add any additional content or formatting here */}
+                        </div>
+                    )}
+                {canRedeem && (
+                    <button className="redeem" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
+                )}
             </div>
 
-            <div className="daily-questions"> 
-            <Questions setUserPoints={setUserPoints} userPoints={userPoints}/>
-            </div>
+            {!quizStarted && ( // Step 2
+                    <button className="daily-question" onClick={() => setQuizStarted(true)}>Start Today's Quiz</button>
+                )}
+                {quizStarted && (
+                    <div className="daily-questions"> 
+                        <Questions setUserPoints={setUserPoints} userPoints={userPoints}/>
+                    </div>
+                )}
         </div>
     )
 }
