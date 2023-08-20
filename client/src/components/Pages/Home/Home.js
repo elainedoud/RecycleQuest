@@ -3,6 +3,7 @@ import './Home.css'
 import AuthCard from "../../Layout/AuthCard/AuthCard"
 import Countdown from "./Countdown"
 import Questions from "./Questions/Questions"
+import Info from "../../Layout/Info/Info"
 
 function Home({ user, userPoints, setUserPoints }) {
     const gem = <img src="https://freepngimg.com/save/56561-gem-download-hq-png/554x361" className="gems" alt="green-gem" />
@@ -74,6 +75,7 @@ function Home({ user, userPoints, setUserPoints }) {
 
     return (
         <div>
+            <Info text={"Daily bonus can be redeemed once every 24 hours. Daily questions refresh every 24 hours and are based on knowledge collected from yesterday's gems quest."}/>
             <div className="daily-points">
             <p className="points-detail">
                 <div className="points-card">
