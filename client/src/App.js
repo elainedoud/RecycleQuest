@@ -9,14 +9,29 @@ import Leaderboard from "./components/Pages/Leaderboard/Leaderboard"
 import AuthCard from "./components/Layout/AuthCard/AuthCard"
 import Header from "./components/Layout/Header/Header"
 import Footer from "./components/Layout/Footer/Footer"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import './App.css'
 import PointsTab from "./components/Layout/Header/Points/PointsTab"
+import UserContext from "./components/Context/UserContext"
 
-function App({user}) {
+function App() {
 
-  const [user, setUser] = useState([null])
+  
   const [userPoints, setUserPoints] = useState(200)
+  const { user } = useContext(UserContext)
+
+  if (!user) {
+    return(
+      <div className="App">
+        <Router>
+          <Header />
+            <Routes>
+              <Route path="/" element={<AuthCard />} />
+            </Routes>
+          {/* <Footer /> */}
+        </Router>
+      </div>)}
+
 
   return(
     <div className="App">
@@ -24,7 +39,6 @@ function App({user}) {
         <Header />
         <PointsTab user={user} userPoints={userPoints}/>
           <Routes>
-            <Route path="/" element={<AuthCard setUser={setUser}/>} />
             <Route path="/home" element={<Home user={user} userPoints={userPoints} setUserPoints={setUserPoints}/>} />
             <Route path="/explore" element={<Explore user={user} setUserPoints={setUserPoints} userPoints={userPoints}/>} />
             <Route path="/locate" element={<Locate userPoints={userPoints} setUserPoints={setUserPoints}/>} />
