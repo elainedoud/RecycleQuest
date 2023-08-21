@@ -11,7 +11,7 @@ import Header from "./components/Layout/Header/Header"
 import Footer from "./components/Layout/Footer/Footer"
 import { useState, useContext } from "react"
 import './App.css'
-import PointsTab from "./components/Layout/Header/Points/PointsTab"
+import PointsTab from "./components/Layout/Points/PointsTab"
 import UserContext from "./components/Context/UserContext"
 import Logout from "./components/Layout/Logout/Logout"
 
