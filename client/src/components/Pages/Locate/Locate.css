@@ -50,7 +50,6 @@
 .add-button {
   background-color: var(--green);
   color: var(--dark-green);
-  border: none;
   border-radius: 50%;
   padding: 10px;
   font-size: 20px;
@@ -61,7 +60,6 @@
 .add-button:hover {
   background-color: var(--violet);
   color: white;
-  transform: scale(1.1);
 }
 
 input.locate{
