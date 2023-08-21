@@ -17,18 +17,18 @@ class PointsController < ApplicationController
 
     def addpoints
         user = User.find_by(username: params[:username])
-        point = Point.create(:user_id = user.id, :points_type: points_type_params[:points_type], :points_count)
+        point = Point.create(:user_id = user.id, :points_type = points_type_params[:points_type], :points_count)
         render json: point
     end
 
     def addpointsbytype
+        user = User.find_by(username: params[:username])
         if :points_type == :daily_bonus
-            User.last_daily_bonus == 
+            User.last_daily_bonus == Time.now
+            User.total_points_count += points_count
         end 
     end
-    #Need to add logic
-    #Also need to add route to this
-    #Recycling logs is included in this
+    #Need to add more logic to this method and add route
 
     def create
         point = Point.new(point_params)
