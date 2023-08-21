@@ -1,18 +1,3 @@
-.logout-button {
-    position: fixed;
-    bottom: 80px; /* Adjust the value to your desired spacing */
-    right: -80px;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: var(--dark-green);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-  }
-
   .logout-tab {
     position: fixed;
     right: 10px;

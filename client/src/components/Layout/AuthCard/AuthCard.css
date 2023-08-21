@@ -4,12 +4,13 @@
     text-align: center;
 }
 .auth-form {
-    background: var(--trans-white);
+    /* background: var(--trans-white); */
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     max-width: 400px;
-    margin: 0 auto;
+    margin-top: 0 auto;
+
   }
   
   .auth-form label {
@@ -49,4 +50,8 @@
 .action-button{
     background-color: var(--violet);
 
+}
+
+ul.errors {
+  background-color: var(--white);
 }

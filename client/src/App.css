@@ -32,44 +32,6 @@ h1, h2, h3, h4 {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 200;
   }
-  button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: var(--violet);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s;
-  }
-
-  button.passive {
-    padding: 5px 10px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: var(--darkest-blue);
-    color: var(--green);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: var(--green);
-    color: var(--violet);
-  }
-
-  button.passive:hover{
-    background-color: var(--green);
-    
-  }
 
   .column1{
     float: left;
@@ -83,3 +45,68 @@ h1, h2, h3, h4 {
     color: yellow;
     width: 45%;
   }
+
+  /* global style for comic style button */
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--violet);
+    border: 2px solid var(--darkest-blue);
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px #000;
+    transition: all 0.3s ease;
+    max-width: 30%;
+  }
+  
+button:hover {
+    background-color: var(--green);
+    color: var(--violet);
+    border: 2px solid var(--darkest-blue);
+    box-shadow: 5px 5px 0px var(--darkest-blue);
+  }
+  
+button:active {
+    background-color: var(--darkest-blue);
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+  
+  .comic-border {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--trans-white);
+    border: 2px solid var(--darkest-blue);
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px #000;
+    max-width: 25%;
+}
+
+button.passive {
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: var(--darkest-blue);
+  color: var(--green);
+  border: none;
+ 
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+button.passive:hover{
+  background-color: var(--green);
+  color: var(--violet);
+}
