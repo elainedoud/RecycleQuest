@@ -6,10 +6,10 @@
   grid-template-columns: repeat(32, 1fr);
   grid-template-rows: repeat(32, 1fr);
   gap: 0px;
-  margin: 0 auto; /* Horizontally center the map */
+  margin: 0 auto; 
   position: relative;
-  width: 640px;
-  height: 960px;
-  top: 50%; /* Vertically center the map */
-
+  width: 420px;
+  height: 640px;
+  top: 50%; 
+  /* padding-top: 20px; */
 }
