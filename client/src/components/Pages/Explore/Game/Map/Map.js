@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import Knowledge from './Knowledge'
-import Gem from './Gem'
+import Knowledge from '../Knowledge/Knowledge'
+import Gem from '../Gem/Gem'
 import './Map.css'
-import './Gem.css'
 
 function Map({user, userPoints, setUserPoints}) {
   console.log(userPoints)

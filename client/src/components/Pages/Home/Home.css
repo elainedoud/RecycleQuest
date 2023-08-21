@@ -6,7 +6,7 @@ body {
     padding-top: 80px;
     justify-content: center;
     align-items: center; 
-    max-width: 60%;
+    /* max-width: 60%; */
     margin-left: auto;
     margin-right: auto;
 }
@@ -37,7 +37,8 @@ points-detail {
     margin-bottom: 20px;
     border-radius: 15px;
     text-transform: uppercase;
-
+    width: 30%;
+    margin: 20px auto;
 }
 
 .gems {

@@ -13,13 +13,13 @@ body {
    
 }
 
-button.redeem {
+/* button.redeem {
     padding: 50px 50px;
     font-size: 25px;
     color: #fff;   
     border-radius: 20px;
     width: 100%;
-}
+} */
 
 p {
     color: var(--light-blue)

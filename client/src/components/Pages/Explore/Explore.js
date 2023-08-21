@@ -1,7 +1,7 @@
 import React from 'react'
 import { MapInteractionCSS } from 'react-map-interaction'
 import './Explore.css'
-import Map from '../Explore/Game/Map'
+import Map from '../Explore/Game/Map/Map'
 import Info from '../../Layout/Info/Info'
 
 function Explore({user, setUserPoints, userPoints}) {
