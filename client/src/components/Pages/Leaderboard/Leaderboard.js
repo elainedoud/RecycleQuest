@@ -1,5 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
+import './Leaderboard.css'
+import Info from "../../Layout/Info/Info"
 
 function Leaderboard(){
 
@@ -18,20 +20,21 @@ function Leaderboard(){
     
     
     return(
-        <div>
-                <div>
-                    <h4>LEADERBOARD</h4>
-                </div>
-                {sortedPoints.map(sortedPoint =>{
-                    return <div key={sortedPoint.id} sortedPoint={sortedPoint}>
-                             <div class="column1">{sortedPoint.username}</div>    
-                             <div class="column2">{sortedPoint.count*2}</div>
+    <>
+    <Info text={"Here you can see how you rank amongst the entire RQ Community! Badges will be awarded to users who remain #1 for a week! Have what it takes to be our next Recycle Quest Champion?"}/>
+        <br/><br/>
+        <div className="leaderboard-container">
+           
+                {sortedPoints.map((sortedPoint, index) =>{
+                    return (
+                        <div key={sortedPoint.id} sortedPoint={sortedPoint} className={`row-leaderboard ${index === 0 ? 'leader' : ''}`}>
+                             <div className={`column1 ${index === 0 ? 'leader' : ''}`}>{sortedPoint.username}</div>    
+                             <div className={`column2 ${index === 0 ? 'leader' : ''}`}>{sortedPoint.count*2}</div>
                         </div>
-                })}
-                <div>
-                    <p>Suggest how they can earn more points - links to submit a recycling plant or redeem recyclables</p>
-                </div>
+                )})}
+                
         </div>
+        </>
     )
 }
 
