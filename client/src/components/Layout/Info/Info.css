@@ -20,6 +20,7 @@
     right: 220px;
     text-align: center;
     background-color: var(--green);
+    border: 1px solid var(--violet);
     color: var(--darkest-blue);
     max-width: 350px;
     border: 2px var(--darkest-blue);
@@ -31,4 +32,5 @@
   
   .info-container:hover .info-popup {
     display: block;
+    border: 2px solid var(--violet);
   }

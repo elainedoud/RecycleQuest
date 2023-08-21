@@ -1,7 +1,7 @@
   .logout-tab {
     position: fixed;
     right: 10px;
-    top: 110px;
+    top: 60px;
     z-index: 1000;
     background-color: var(--darkest-blue);
     color: white;
@@ -11,6 +11,7 @@
     border-top-right-radius: 0;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    padding-top: 4%;
   }
 
   button.no-styling {
