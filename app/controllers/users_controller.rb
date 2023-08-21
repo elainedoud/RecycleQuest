@@ -20,6 +20,12 @@ class UsersController < ApplicationController
         render json: userpoints 
     end
 
+    def show_recyclelogs
+        user = User.find(params[:id])
+        logs = user.recyclelogs
+        render json: logs
+    end
+
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id
