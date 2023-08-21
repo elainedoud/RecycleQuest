@@ -3,6 +3,7 @@ import { useFormik } from 'formik'
 import NewLocation from './NewLocation'
 import './Locate.css'
 import Info from '../../Layout/Info/Info'
+import './NewLocation.css'
 
 const Locate = ({ userPoints, setUserPoints }) => {
   // Sample locations data
@@ -107,7 +108,7 @@ const Locate = ({ userPoints, setUserPoints }) => {
         ))}
       </div>
       {showSubmitWindow && (
-        <div className="submit-location-window">
+        <div className="submit-location-container">
           <NewLocation onNewLocationSubmit={onNewLocationSubmit} onCancel={onCancelSubmit} />
         </div>
       )}

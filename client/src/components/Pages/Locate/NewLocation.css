@@ -1,0 +1,44 @@
+.submit-location-window {
+    background: var(--dark-blue);
+    border: 1px solid var(--green);
+    border-radius: 15PX;
+    max-width: 20%;
+    padding: 40px;
+
+}
+
+h2.add-location {
+    color: var(--light-blue) !important;
+}
+
+.submit-location-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay background */
+    z-index: 9999; /* Place the container on top of everything */
+    color: var(--violet);
+  }
+
+  input{
+    border-color: var(--violet) !important;
+    background-color: var(--darkest-blue);
+    color: var(--light-blue);
+    border-radius: 15px;
+    padding: 10px;
+    margin: 5px;
+  }
+  
+  input::placeholder {
+    color: var(--violet); /* Set placeholder text color */
+  }
+
+  button.add-facility{
+    width: 300px;
+    margin: 5px;
+  }
