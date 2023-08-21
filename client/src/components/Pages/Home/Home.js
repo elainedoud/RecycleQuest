@@ -90,7 +90,7 @@ function Home({ user, userPoints, setUserPoints }) {
                         </div>
                     )}
                 {canRedeem && (
-                    <button className="redeem" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
+                    <button className="daily-question" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
                 )}
             </div>
 

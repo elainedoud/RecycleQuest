@@ -13,13 +13,13 @@ body {
    
 }
 
-button.redeem {
+/* button.redeem {
     padding: 50px 50px;
     font-size: 25px;
     color: #fff;   
     border-radius: 20px;
     width: 100%;
-}
+} */
 
 p {
     color: var(--light-blue)
@@ -31,10 +31,37 @@ p.stats-detail {
 
 
 .points-card {
-    background-color: var(--trans-white);
-    color: var(--dark-green);
+    background-color: var(--darkest-blue);
+    border: 1px solid var(--green);
+    color: var(--light-blue);
     padding: 50px 10px ;
     border-radius: 30px;
     text-transform: uppercase;
+    max-width: 30%;
+    margin: auto;
     
 }
+
+.count-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .count-button {
+    margin: 0 10px;
+    padding: 5px 10px;
+    font-size: 20px;
+    background-color: var(--green);
+    color: var(--violet);
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    margin-bottom: 20px;
+  }
+
+  .count-button:hover{
+    background: var(--violet);
+    color: var(--light-blue);
+  }
+  

@@ -3,6 +3,7 @@ import { useFormik } from 'formik'
 import NewLocation from './NewLocation'
 import './Locate.css'
 import Info from '../../Layout/Info/Info'
+import './NewLocation.css'
 
 const Locate = ({ userPoints, setUserPoints }) => {
   // Sample locations data
@@ -83,6 +84,7 @@ const Locate = ({ userPoints, setUserPoints }) => {
             placeholder="Search by Zip Code"
             value={formik.values.location}
             onChange={formik.handleChange}
+            className="locate"
           />
           <button type="submit" onClick={formik.handleSubmit}>
             Search
@@ -98,13 +100,15 @@ const Locate = ({ userPoints, setUserPoints }) => {
             <h3>{location.name}</h3>
             <p>{location.address1}</p>
             <p>{location.address2}</p>
-            <p>Recyclables: {location.recyclables}</p>
-            <p>Created By: {location.created_by}</p>
+            <p>Zipcode: {location.zip}</p> <br/>
+            <b><p>Recyclables: {location.recyclables}</p></b>
+            <i><p>Contributed By: {location.created_by}</p></i>
+            
           </div>
         ))}
       </div>
       {showSubmitWindow && (
-        <div className="submit-location-window">
+        <div className="submit-location-container">
           <NewLocation onNewLocationSubmit={onNewLocationSubmit} onCancel={onCancelSubmit} />
         </div>
       )}

@@ -3,10 +3,10 @@ body {
 }
 
 .daily-points, .daily-question {
-    padding-top: 80px;
+    padding-top: 8px;
     justify-content: center;
     align-items: center; 
-    max-width: 60%;
+    /* max-width: 60%; */
     margin-left: auto;
     margin-right: auto;
 }
@@ -34,10 +34,12 @@ points-detail {
     background-color: var(--darkest-blue);
     color: var(--light-blue);
     padding: 20px;
-    margin-bottom: 20px;
+    border: 1px solid var(--green);
+    /* margin-bottom: 20px; */
     border-radius: 15px;
     text-transform: uppercase;
-
+    width: 30%;
+    margin: 20px auto;
 }
 
 .gems {

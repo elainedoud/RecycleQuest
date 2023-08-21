@@ -74,7 +74,8 @@ function AuthCard() {
   })
 
   return (
-    <div className="auth">
+    <><br /><br />
+    <div className="auth comic-border">
       <form className="auth-form" onSubmit={formik.handleSubmit}>
         <h4>{signUp ? "Enter your credentials to sign up!" : "Enter your credentials to log in!"}</h4>
         <br />
@@ -111,7 +112,7 @@ function AuthCard() {
             <br />
           </>
         )}
-        <button className="action-button" type="submit">
+        <button className="comic-button" type="submit">
           {signUp ? "Sign Up!" : button}
         </button>
 
@@ -122,6 +123,7 @@ function AuthCard() {
         <br />
         <br />
       </form>
+      
       {errorMessage && (
         <div className="errors">
           <h6 style={{ color: "red" }}>{errorMessage}</h6>
@@ -129,7 +131,7 @@ function AuthCard() {
       )}
       {formik.errors && (
         <div className="errors">
-          <ul>
+          <ul className="errors">
             {Object.values(formik.errors).map((error, index) => (
               <h6 key={index} style={{ color: "red" }}>
                 {error}
@@ -139,6 +141,7 @@ function AuthCard() {
         </div>
       )}
     </div>
+    </>
   )
 }
 
