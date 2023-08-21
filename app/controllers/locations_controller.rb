@@ -16,7 +16,7 @@ class LocationsController < ApplicationController
     end
 
     def location_params
-        params.permit(:name, :address_1, :address_2, :recyclable_items)
+        params.permit(:name, :address_1, :address_2, :accepted_recyclables, :created_by, :zipcode)
     end
 
 end

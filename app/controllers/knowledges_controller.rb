@@ -16,7 +16,7 @@ class KnowledgesController < ApplicationController
     end
 
     def knowledge_params
-        params.permit(:character_name, :knowledge_blurb)
+        params.permit(:character_name, :knowledge_blurb, :y, :x)
     end
 
 end

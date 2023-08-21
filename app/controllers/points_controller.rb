@@ -21,7 +21,7 @@ class PointsController < ApplicationController
     end
 
     def point_params
-        params.permit(:user_id, :question_id, :amount)
+        params.permit(:user_id, :points_type, :points_count, :date)
     end
 
 end
