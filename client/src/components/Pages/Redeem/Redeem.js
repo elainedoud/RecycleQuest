@@ -6,7 +6,11 @@ function Redeem(){
     const [count, setCount] = useState(0)
 
     const handleCountChange = (increment) => {
-        setCount(prevCount => prevCount + increment);
+
+        if(count+increment >= 0){
+            setCount(prevCount => prevCount + increment);
+        }
+        
       }
 
     const handleSubmit = (values) => {
