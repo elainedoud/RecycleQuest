@@ -21,7 +21,6 @@ class PointsController < ApplicationController
         render json: point
             end
         end
-    end
 
     def addpointsbytype
         user = User.find_by(username: params[:username])
@@ -37,6 +36,8 @@ class PointsController < ApplicationController
             point = Point.create(:user_id = user.id, :points_type = points_type_params[:points_type], :points_count)
         elsif points_type == recycle_redemption
             point = point = Point.create(:user_id = user.id, :points_type = points_type_params[:points_type], :points_count)
+                end
+            end
         end 
     end
     

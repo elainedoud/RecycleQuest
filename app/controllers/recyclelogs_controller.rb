@@ -1,9 +1,9 @@
 class RecyclelogsController < ApplicationController
 
-def index
-    logs = Recyclelogs.find_by!(:user_id)
-    render json: logs
-end
+    def show_recyclelogs
+        logs = Recyclelog.includes(:user).where(user_id: user.id)
+        render json: logs
+    end
 
 def newlog
     log = Recyclelog.new(user_id: user_id, date: Time.now, amount: amount)

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   post '/newuser', to: "users#create"
   get '/leaderboard', to: "users#leaderboard"
 
-  get '/userlogs', to: "recyclelogs#index"
+  get '/userlogs', to: "recyclelogs#show_recyclelogs"
   post '/newlog', to: "recyclelogs#newlog"
 
 end
