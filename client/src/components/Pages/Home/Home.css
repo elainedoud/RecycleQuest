@@ -2,16 +2,16 @@ body {
     text-align: center;
 }
 
-.daily-points {
+.daily-points, .daily-question {
+    padding-top: 80px;
     justify-content: center;
     align-items: center; 
-
     max-width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
 
-button.redeem {
+button.redeem, button.daily-question {
     padding: 50px 50px;
     font-size: 25px;
     color: #fff;   
@@ -25,17 +25,19 @@ p {
     color: var(--light-blue)
 }
 
-p.points-detail {
+points-detail {
     color: var(--violet)
 }
 
 
-.points-card {
-    background-color: var(--trans-white);
-    color: var(--dark-green);
-    padding: 50px 10px ;
-    border-radius: 30px;
+.redeem-status {
+    background-color: var(--darkest-blue);
+    color: var(--light-blue);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
     text-transform: uppercase;
+
 }
 
 .gems {
@@ -48,3 +50,4 @@ p.redeemable{
     font-size: 12px;
     text-transform: uppercase;
 }
+

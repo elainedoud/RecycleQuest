@@ -1,0 +1,34 @@
+.info-container {
+    position: relative;
+    float: right;
+    right: 165px;
+    top: 5px;
+    /* margin: 10px; */
+    text-align: right;
+  }
+  
+  .info-icon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .info-popup {
+    /* display: none; */
+    position: fixed;
+    top: 125px;
+    right: 220px;
+    text-align: center;
+    background-color: var(--green);
+    color: var(--darkest-blue);
+    max-width: 350px;
+    border: 2px var(--darkest-blue);
+    border-radius: 15px;
+    padding: 30px;
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); */
+    z-index: 2000;
+  }
+  
+  .info-container:hover .info-popup {
+    display: block;
+  }

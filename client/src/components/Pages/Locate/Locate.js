@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import NewLocation from './NewLocation'
 import './Locate.css'
+import Info from '../../Layout/Info/Info'
 
 const Locate = ({ userPoints, setUserPoints }) => {
   // Sample locations data
@@ -24,7 +25,6 @@ const Locate = ({ userPoints, setUserPoints }) => {
       'recyclables': 'Glass, Aluminum',
       'created_by': 'User456',
     },
-    // Add more sample locations as needed
   ])
 
   // Filtered locations for search
@@ -74,6 +74,7 @@ const Locate = ({ userPoints, setUserPoints }) => {
 
   return (
     <div>
+      <Info text="Search for local recycling plants by zip code! Earn points for contributing any missing facilities to our database!"/>
       <div className="search-container">
         <div className="search-bar">
           <input

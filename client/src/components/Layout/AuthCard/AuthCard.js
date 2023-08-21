@@ -1,88 +1,68 @@
-import React from "react"
-import { useState, useEffect } from "react"
+import React, { useState, useContext } from "react"
 import { useFormik } from "formik"
 import { useNavigate } from "react-router-dom"
 import * as yup from "yup"
 import "./AuthCard.css"
+import UserContext from "../../Context/UserContext"
 
-function AuthCard({setUser}){
+function AuthCard() {
+  const { updateUser, user } = useContext(UserContext)
   const [signUp, setSignUp] = useState(false)
   const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState("")
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(Boolean(user))
   const [button, setButton] = useState("Log In!")
 
-  useEffect(() => {
-    fetch('/user')
-    .then(res => {
-      console.log(res)
-      if (res.ok) {
-        res.json().then(user => {
-          setUser(user)
-          setLoggedIn(true)
-          setButton("Log Out!")
-          console.log("user is logged in")
-          setUser(user)
-        }
-    )} else {
-        setUser({});
-        setLoggedIn(false);
-      };
-    })
-    }, []);
-    
   const handleClick = () => {
     setSignUp((prevState) => !prevState)
   }
-  
-  const handleSubmit = (values) => {
 
-    if (loggedIn === true){
-      setUser({})
-      fetch('/logout', {
-        method: "DELETE"
+  const handleSubmit = (values) => {
+    if (loggedIn === true) {
+      updateUser({})
+      fetch("/logout", {
+        method: "DELETE",
       })
       setLoggedIn(false)
       navigate(`/`)
-    }
-    else {
-     const url = signUp ? "/newuser" : "/login"
-     
-     fetch(url, {
-         method: "POST",
-         headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify(values),
-     })
-       .then((response) => {
-        if (response.ok) {
-           return response.json()
-         } else {
-           throw new Error("Invalid credentials")
-         }
-       })
-       .then((data) => {
-         setUser(data)
-         setLoggedIn(true)
-         navigate(`/`)
-       })
-       .catch((error) => {
-       setErrorMessage("Invalid credentials. Please check your username and password.")
-       console.log(errorMessage)
-       })
-  }    
-}
-  
-  const formSchema = yup.object().shape({
-      username: yup.string().required("Please enter a username."),
-     password: yup.string().required("Please enter a password."),
-   })
+    } else {
+      const url = signUp ? "/newuser" : "/login"
 
-   const alreadyLoggedIn = yup.object().shape({
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json()
+          } else {
+            throw new Error("Invalid credentials")
+          }
+        })
+        .then((data) => {
+          updateUser(data)
+          setLoggedIn(true) // Set the loggedIn state to true when logged in
+          navigate(`/home`)
+        })
+        .catch((error) => {
+          setErrorMessage("Invalid credentials. Please check your username and password.")
+          console.log(errorMessage)
+        })
+    }
+  }
+
+  const formSchema = yup.object().shape({
+    username: yup.string().required("Please enter a username."),
+    password: yup.string().required("Please enter a password."),
+  })
+
+  const alreadyLoggedIn = yup.object().shape({
     username: "",
     password: "",
-   })
+  })
 
   const formik = useFormik({
     initialValues: {
@@ -92,8 +72,6 @@ function AuthCard({setUser}){
     validationSchema: loggedIn ? alreadyLoggedIn : formSchema,
     onSubmit: handleSubmit,
   })
-
-  
 
   return (
     <div className="auth">
@@ -133,7 +111,9 @@ function AuthCard({setUser}){
             <br />
           </>
         )}
-        <button className="action-button" type="submit">{signUp ? "Sign Up!" : button}</button>
+        <button className="action-button" type="submit">
+          {signUp ? "Sign Up!" : button}
+        </button>
 
         <p className="login">{signUp ? "Already a member?" : "Not a member?"}</p>
         <button className="passive" onClick={handleClick}>
@@ -161,6 +141,5 @@ function AuthCard({setUser}){
     </div>
   )
 }
-
 
 export default AuthCard
