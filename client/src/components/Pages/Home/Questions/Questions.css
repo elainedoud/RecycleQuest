@@ -1,13 +1,13 @@
 
 .card {
-    background-color: var(--trans-white);
-    color: var(--dark-green);
+    background-color: var(--darkest-blue);
     padding: 50px 10px ;
-    border-radius: 30px;
+    border-radius: 15px;
     text-align: center;
     text-transform: uppercase;
-    max-width: 60%;
+    max-width: 31%;
     margin: auto;
+
  }
   
   .options {
@@ -21,24 +21,26 @@
     margin-bottom: 10px;
     cursor: pointer;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--dark-blue);
     border-radius: 10px;
     transition: background-color 0.3s ease;
-    color: var(--dark-green)
+    color: var(--green)
   }
   
   .option:hover {
-    background-color: var(--green);
-    color: var(--violet)
-  }
-  
-  .correct-answer {
+    background-color: var(--violet);
     color: var(--green);
     font-weight: bold;
   }
   
-  .wrong-answer {
-    color: var(--purple);
+  .correct-answer {
+    color: var(--violet);
+    background: var(--green);
+    font-weight: bold;
+  }
+  
+  .answer {
+    color: var(--light-blue);
     font-weight: bold;
   }
   
@@ -54,4 +56,19 @@
 
   .query{
     color: var(--violet);
+    font-weight: bolder;
   }
+
+  button.next {
+    max-width: 60%;
+  }
+
+  h2.points-detail {
+    color: var(--light-blue);
+  }
+
+.card.points{
+  color: var(--light-blue);
+  border: 1px solid var(--green);
+  margin-top: 10px;
+}

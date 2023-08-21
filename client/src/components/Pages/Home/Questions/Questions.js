@@ -82,7 +82,7 @@ function Questions({setUserPoints, userPoints}) {
     <div className="daily-questions">
       {questions.length > 0 && currentQuestionIndex < questions.length ? (
         <div className="card">
-          <h2 className="points-detail">Daily Question {currentQuestionIndex + 1}</h2>
+          <h2 className="points-detail">Question {currentQuestionIndex + 1}</h2>
           <p className="query">{questions[currentQuestionIndex].query}</p>
           <div className="options">
             <div
@@ -116,25 +116,26 @@ function Questions({setUserPoints, userPoints}) {
           {userAnswer !== null && (
             <div>
               {userAnswer === questions[currentQuestionIndex].answer ? (
-                <p className="correct-answer">Correct!</p>
+                <p className="answer">Correct!</p>
               ) : (
-                <p className="wrong-answer">
+                <p className="answer">
                   Wrong! The correct answer is{" "}
                   {questions[currentQuestionIndex].answer}.
                 </p>
               )}
-              <button className="redeem" onClick={nextQuestion}>
+              <button className="next" onClick={nextQuestion}>
                 Next Question
               </button>
             </div>
           )}
         </div>
-      ) : (
+      ) : ( 
+        <div className="card points"> 
         <p className="redeemable">
           Daily Quiz completed. <br/>
           Your score: {score}<br/>
           Points Eearned: {points}
-        </p>
+        </p></div>
       )}
     </div>
   )
