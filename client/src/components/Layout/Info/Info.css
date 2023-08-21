@@ -14,7 +14,7 @@
   }
   
   .info-popup {
-    /* display: none; */
+    display: none;
     position: fixed;
     top: 125px;
     right: 220px;

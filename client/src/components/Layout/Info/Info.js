@@ -1,12 +1,10 @@
 import React, { useState } from "react"
-import InfoIcon from './info-icon.png'
+import infoIcon from './info-icon.png'
 import "./Info.css"
 
 function Info({text}) {
     const [showPopup, setShowPopup] = useState(false)
-    const icon = InfoIcon
-    
-    
+        
     const togglePopup = () => {
         setShowPopup(!showPopup)
         console.log("toggle")
@@ -16,7 +14,7 @@ function Info({text}) {
         <div className="info-container">
             <img
                 className="info-icon"
-                src={icon}
+                src={infoIcon}
                 alt="Info Icon"
                 style={{ cursor: 'pointer' }}
                 onClick={togglePopup}
