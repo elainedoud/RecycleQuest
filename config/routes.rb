@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/assignpoints', to: "points#assign_points"
   get '/allpoints', to: "points#index"
   post '/addpoints', to: "points#addpoints"
+  post '/addpointsbytype', to: "points#addpointsbytype"
 
   get '/question', to: "questions#index"
   get '/allquestions', to: "questions#show_all"
