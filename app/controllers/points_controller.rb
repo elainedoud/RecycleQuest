@@ -17,7 +17,7 @@ class PointsController < ApplicationController
 
     def addpoints
         user = User.find_by(username: params[:username])
-        point = Point.create(:user_id = user.id, :points_type = points_type_params[:points_type], :points_count)
+        point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count)
         render json: point
         end
     end
