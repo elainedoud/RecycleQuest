@@ -15,6 +15,21 @@ class PointsController < ApplicationController
     #Will likely need to experiment with assign_points method to make sure
     #it's working as expected
 
+    def addpoints
+        user = User.find_by(username: params[:username])
+        point = Point.create(:user_id = user.id, :points_type: points_type_params[:points_type], :points_count)
+        render json: point
+    end
+
+    def addpointsbytype
+        if :points_type == :daily_bonus
+            User.last_daily_bonus == 
+        end 
+    end
+    #Need to add logic
+    #Also need to add route to this
+    #Recycling logs is included in this
+
     def create
         point = Point.new(point_params)
         render json: point
@@ -24,4 +39,7 @@ class PointsController < ApplicationController
         params.permit(:user_id, :points_type, :points_count, :date)
     end
 
+    def points_type_params
+        params.permit(:daily_bonus, :daily_questions, :location_redemption, :recycle_redemption)
+    end
 end
