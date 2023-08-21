@@ -23,11 +23,13 @@
   display: grid;
   gap: 20px;
   padding: 20px;
+  max-width: 30%;
+  margin: auto;
 }
 
 .location-card {
   margin-top: 15px;
-  padding: 10px;
+  padding: 30px;
   border: 1px solid var(--green);
   border-radius: 30px;
   background-color: var(--darkest-blue);
@@ -60,4 +62,14 @@
   background-color: var(--violet);
   color: white;
   transform: scale(1.1);
+}
+
+input.locate{
+  border-color: var(--violet) !important;
+  background-color: var(--darkest-blue);
+  color: var(--light-blue);
+}
+
+input.locate::placeholder {
+  color: var(--violet); /* Set placeholder text color */
 }
