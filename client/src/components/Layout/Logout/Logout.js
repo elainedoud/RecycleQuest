@@ -22,7 +22,7 @@ function Logout(){
   
     return (
         <div className="logout-tab">
-          <button className="passive" onClick={handleLogout}>
+          <button className="no-styling" onClick={handleLogout}>
         Log Out
       </button>  
         </div>

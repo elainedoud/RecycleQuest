@@ -12,3 +12,13 @@
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
   }
+
+  button.no-styling {
+    background-color: transparent;
+    border: none;
+    font-size: 12px;
+    padding: 5px;
+    max-width: 100%;
+    box-shadow: var(--darkest-blue);
+    color: var(--light-blue)
+  }
