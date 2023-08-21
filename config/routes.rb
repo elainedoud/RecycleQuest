@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/assignpoints', to: "points#assign_points"
   get '/allpoints', to: "points#index"
   post '/addpoints', to: "points#addpoints"
+  post '/addpointsbytype', to: "points#addpointsbytype"
 
   get '/question', to: "questions#index"
   get '/allquestions', to: "questions#show_all"
@@ -26,7 +27,8 @@ Rails.application.routes.draw do
   post '/newuser', to: "users#create"
   get '/leaderboard', to: "users#leaderboard"
 
-  get '/userlogs', to: "recyclelogs#index"
+  get '/userlogs', to: "users#show_recyclelogs"
   post '/newlog', to: "recyclelogs#newlog"
+  get '/logs', to: "recyclelogs#index"
 
 end

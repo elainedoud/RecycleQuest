@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-        params.permit(:query, :option1, :option2, :option3, :answer)
+        params.permit(:query, :A, :B, :C, :answer)
     end
 
 end
