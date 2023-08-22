@@ -46,7 +46,7 @@ function Home() {
             setTimeRemaining(24 * 60 * 60 * 1000)
 
         // Elaine to confirm this endpoint
-        fetch(`/addPoints/${user.id}`, {
+        fetch(`/addpointsbytype?id=${user.id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -55,6 +55,7 @@ function Home() {
         })
         .then(response => {
             if (response.ok) {
+                console.log(response)
                 console.log("Points added successfully!");
                 user.total_points = user.total_points += pointsToAdd;
             } else {
