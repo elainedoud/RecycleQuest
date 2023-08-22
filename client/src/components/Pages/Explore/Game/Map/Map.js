@@ -46,7 +46,7 @@ function Map({ gems, collectedCount, incrementCollected, collectedKnowledge, set
         ))}
       </div>
       {selectedGem && (
-        <Knowledge text={selectedGem.knowledge_blurb} onClose={closeKnowledge} userPoints={userPoints} setUserPoints={setUserPoints} />
+        <Knowledge knowledge={selectedGem.knowledge_blurb} character={selectedGem.character_name} onClose={closeKnowledge} userPoints={userPoints} setUserPoints={setUserPoints} />
       )}
       {collectedCount === gems.length && (
         <div className="collected-knowledge">
