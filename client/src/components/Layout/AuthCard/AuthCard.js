@@ -50,7 +50,7 @@ function AuthCard() {
         })
         .catch((error) => {
           setErrorMessage("Invalid credentials. Please check your username and password.")
-          console.log(errorMessage)
+          // console.log(error)
           
         })
         

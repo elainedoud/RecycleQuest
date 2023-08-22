@@ -7,7 +7,6 @@ function Info({text}) {
         
     const togglePopup = () => {
         setShowPopup(!showPopup)
-        console.log("toggle")
     }
 
     return (
