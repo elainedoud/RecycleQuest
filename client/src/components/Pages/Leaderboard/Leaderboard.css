@@ -51,3 +51,13 @@
     font-weight: bolder;
     font-size: 24px;
 }
+
+.logged-in {
+    background-color: var(--yellow);
+}
+
+.logged-in.column1, .logged-in.column2 {
+    color: var(--violet);
+    font-weight: bolder;
+    font-size: 20px;
+}
