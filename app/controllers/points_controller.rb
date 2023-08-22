@@ -27,7 +27,9 @@ class PointsController < ApplicationController
         if points_type == 'daily_bonus'
             user.last_daily_bonus = Time.now
         elsif points_type == 'daily_questions'
-            user.last_gem_bonus = Time.now   
+            user.last_daily_question = Time.now  
+        elsif points_type == 'daily_gem'
+            user.last_gem_bonus = Time.now
         end 
         point = user.points.create(point_params)
         if user.points.last&.points_count != nil
@@ -47,7 +49,7 @@ class PointsController < ApplicationController
 
     def points_type_params(points_type)
         case points_type
-        when :daily_bonus, :daily_questions, :location_redemption, :recycle_redemption
+        when :daily_bonus, :daily_questions, :location_redemption, :recycle_redemption, :daily_gem
             params.permit(:points_type)
         end
     end
