@@ -22,7 +22,7 @@ export function UserProvider({ children }) {
         setUser(data)
         setUserPoints(data.total_points_count)
         setLastDailyBonus(data.last_daily_bonus)
-        setLastDailyGems(data.last_daily_gems)
+        setLastDailyGems(data.last_gem_bonus)
       })
       .catch((error) => {
         // console.error("No user logged in - " 
@@ -31,7 +31,6 @@ export function UserProvider({ children }) {
       })
   }, [])
 
-  
 
   // Return the UserContext Provider with the user and setUser in value
   return (
