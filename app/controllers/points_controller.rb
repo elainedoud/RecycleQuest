@@ -24,20 +24,27 @@ class PointsController < ApplicationController
     def addpointsbytype
         user = User.find_by(id: params[:id])
         point = user.points.create(point_params)
-        points_type = point.points_type
-        #points_type = user.points.last&.points_type
-        if points_type == 'daily_bonus'
-            user.last_daily_bonus = Time.now
-        elsif points_type == 'daily_questions'
-            user.last_daily_question = Time.now 
-        elsif points_type == 'daily_gem'
-            user.last_gem_bonus = Time.now
-        end 
-        if user.points.last&.points_count != nil
-        user.total_points_count += point.points_count
-        end
         render json: point
+        user.total_points_count += point.points_count
     end
+
+   # def addpointsbytype
+   #     user = User.find_by(id: params[:id])
+   #     point = user.points.create(point_params)
+   #     points_type = point.points_type
+   #     #points_type = user.points.last&.points_type
+   #     if points_type == 'daily_bonus'
+   #         user.last_daily_bonus = Time.now
+   #     elsif points_type == 'daily_questions'
+   #         user.last_daily_question = Time.now 
+   #     elsif points_type == 'daily_gem'
+   #         user.last_gem_bonus = Time.now
+   #     end 
+   #     if user.points.last&.points_count != nil
+    #    user.total_points_count += point.points_count
+   #     end
+    #    render json: point
+ #  end
     
     def create
         point = Point.new(point_params)
@@ -45,7 +52,7 @@ class PointsController < ApplicationController
     end
 
     def point_params
-        params.permit(:user_id, :points_type, :points_count, :date)
+        params.permit(:id, :user_id, :points_type, :points_count, :date)
     end
 
     def points_type_params(points_type)
