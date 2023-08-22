@@ -45,24 +45,34 @@ function Home() {
             setTimerStopped(false)
             setTimeRemaining(24 * 60 * 60 * 1000)
 
+
         // Elaine to confirm this endpoint
+          
         fetch(`/addpointsbytype?id=${user.id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            // need to add data structure to send points to back end AND update time  
+            body: JSON.stringify({
+                user_id: user.id,
+                points_type: "daily_bonus",
+                points_count: 15,
+                date: new Date().toISOString()
+            })
         })
         .then(response => {
             if (response.ok) {
                 console.log(response)
                 console.log("Points added successfully!");
-                user.total_points = user.total_points += pointsToAdd;
+                const newPoints = userPoints + pointsToAdd
+                setUserPoints(newPoints)
             } else {
                 console.error("Failed to add points.");
             }
-        });
+        })
         }
+
+
 
     }
 
