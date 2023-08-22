@@ -8,13 +8,12 @@ import Redeem from "./components/Pages/Redeem/Redeem"
 import SubmitLocation from "./components/Pages/SubmitLocation/SubmitLocation"
 import Points from "./components/Pages/PointsHistory/Points"
 import Leaderboard from "./components/Pages/Leaderboard/Leaderboard"
-
 import Header from "./components/Layout/Header/Header"
 import Footer from "./components/Layout/Footer/Footer"
 import PointsTab from "./components/Layout/Points/PointsTab"
 import UserContext from "./components/Context/UserContext"
 import Logout from "./components/Layout/Logout/Logout"
-import { UserProvider } from "./components/Context/UserContext"
+
 import './App.css'
 
 function App() {
@@ -52,8 +51,6 @@ function App() {
       </Router>
     </div>
   )
-
-
 }
 
 export default App

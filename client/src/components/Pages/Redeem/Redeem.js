@@ -26,7 +26,7 @@ function Redeem(){
                     <b>YTD Recycled:</b> 487 {recycle}<br/>
                 </div>        
             </div>
-
+            <br/>
             <button className="redeem" onClick={handleSubmit}>REDEEM {count} RECYCLEABLES</button> <br/>
 
             <div className="count-buttons">
