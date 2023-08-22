@@ -26,12 +26,11 @@ class PointsController < ApplicationController
         points_type = user.points.last&.points_type
         if points_type == 'daily_bonus'
             user.last_daily_bonus = Time.now
-            user.total_points_count += Point.points_count
         elsif points_type == 'daily_questions'
-            user.last_gem_bonus = Time.now
-            user.total_points_count += Point.points_count
+            user.last_gem_bonus = Time.now   
         end 
         point = user.points.create(point_params)
+        user.total_points_count += user.points.last&.points_count
         render json: point
     end
     
