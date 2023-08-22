@@ -16,9 +16,6 @@ import UserContext from "./components/Context/UserContext"
 import Logout from "./components/Layout/Logout/Logout"
 
 function App() {
-
-  
-  const [userPoints, setUserPoints] = useState(200)
   const { user } = useContext(UserContext)
 
   if (!user) {
@@ -38,15 +35,15 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <PointsTab user={user} userPoints={userPoints}/>
+        <PointsTab />
           <Routes>
-            <Route path="/home" element={<Home user={user} userPoints={userPoints} setUserPoints={setUserPoints}/>} />
-            <Route path="/explore" element={<Explore user={user} setUserPoints={setUserPoints} userPoints={userPoints}/>} />
-            <Route path="/locate" element={<Locate userPoints={userPoints} setUserPoints={setUserPoints}/>} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/locate" element={<Locate />} />
             <Route path="/create/location" element={<SubmitLocation />} />
-            <Route path="/redeem" element={<Redeem user={user} setUserPoints={setUserPoints}/>}/>
-            <Route path="/points" element={<Points user={user} setUserPoints={setUserPoints}/>} />
-            <Route path="/leaderboard" element={<Leaderboard user={user} userPoints={userPoints}/>} />
+            <Route path="/redeem" element={<Redeem />}/>
+            <Route path="/points" element={<Points />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
           </Routes>
           <Logout />
         <Footer />
