@@ -23,11 +23,11 @@ class PointsController < ApplicationController
 
     def addpointsbytype
         user = User.find_by(id: params[:id])
-        points_type = user.points.points_type
-        if points_type_params[points_type] == 'daily_bonus'
+        points_type = user.points.last&.points_type
+        if points_type == 'daily_bonus'
             user.last_daily_bonus = Time.now
             user.total_points_count += Point.points_count
-        elsif points_type_params[points_type] == 'daily_questions'
+        elsif points_type == 'daily_questions'
             user.last_gem_bonus = Time.now
             user.total_points_count += Point.points_count
         end 
