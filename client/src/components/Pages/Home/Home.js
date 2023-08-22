@@ -1,27 +1,24 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import './Home.css'
-import AuthCard from "../../Layout/AuthCard/AuthCard"
 import Countdown from "./Countdown"
 import Questions from "./Questions/Questions"
 import Info from "../../Layout/Info/Info"
+import UserContext from "../../Context/UserContext"
 
-function Home({ user, userPoints, setUserPoints }) {
+function Home() {
+    const { user, userPoints, setUserPoints } = useContext(UserContext)
+
     const gem = <img src="https://freepngimg.com/save/56561-gem-download-hq-png/554x361" className="gems" alt="green-gem" />
     const [quizStarted, setQuizStarted] = useState(false)
 
-    // logic and variables for points and timer
-    const [points, setPoints] = useState({
-        total_points: userPoints,
-        last_daily: "2023-08-14T11:05:25.381Z"
-    })
-    const lastDailyTime = new Date(Date.parse(points.last_daily))
+    let lastDailyTime = new Date(Date.parse(user.last_daily_bonus))
     const now = new Date()
     const timeSinceLastDaily = now - lastDailyTime
-    const canRedeem = timeSinceLastDaily > 24 * 60 * 60 * 1000 // Less than 24 hours in milliseconds
+    const canRedeem = timeSinceLastDaily > 24 * 60 * 60 * 1000
     const [timeRemaining, setTimeRemaining] = useState(canRedeem ? 0 : 24 * 60 * 60 * 1000 - timeSinceLastDaily)
     const [timerStopped, setTimerStopped] = useState(canRedeem)
 
-    useEffect(() => {
+    useEffect(() =>{
         if (!timerStopped && timeRemaining > 0) {
             const interval = setInterval(() => {
                 setTimeRemaining(prevTime => {
@@ -40,38 +37,32 @@ function Home({ user, userPoints, setUserPoints }) {
         }
     }, [timeRemaining, timerStopped])
 
-    // calculate exact time remaining for display
-    const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60))
-    const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))
-    const secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000)
-
-    // post request tbd but temp state point update & timer reset
     const redeemPoints = (pointsToAdd) => {
         if (canRedeem && user) {
-            setPoints(prevPoints => ({
-                ...prevPoints,
-                total_points: prevPoints.total_points + pointsToAdd,
-                last_daily: new Date().toISOString() // Update last_daily to the current time in ISO format
-            }))
-            setUserPoints(userPoints + pointsToAdd)
-            setTimerStopped(false) // Restart the timer
-            setTimeRemaining(24 * 60 * 60 * 1000) // Set timeRemaining to 24 hours in milliseconds
+            const newPoints = userPoints + pointsToAdd
+            setUserPoints(newPoints)
+            user.last_daily_bonus = new Date().toISOString() 
+            setTimerStopped(false)
+            setTimeRemaining(24 * 60 * 60 * 1000)
+
+        // Elaine to confirm this endpoint
+        fetch(`/addPoints/${user.id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            // need to add data structure to send points to back end AND update time  
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log("Points added successfully!");
+                user.total_points = user.total_points += pointsToAdd;
+            } else {
+                console.error("Failed to add points.");
+            }
+        });
         }
 
-        // fetch(`/addPoints/${userId}/${pointsToAdd}`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        // })
-        // .then(response => {
-        //     if (response.ok) {
-        //         console.log("Points added successfully!");
-        //         points.total_points = points.total_points += pointsToAdd;
-        //     } else {
-        //         console.error("Failed to add points.");
-        //     }
-        // });
     }
 
     return (
@@ -80,28 +71,28 @@ function Home({ user, userPoints, setUserPoints }) {
             
             <div className="daily-points">
                 {!canRedeem ? (
-                        <div className="redeem-status">
-                            <Countdown timeRemaining={timeRemaining} />
-                        </div>
-                    ) : (
-                        <div className="redeem-status">
-                            <b>Today's Daily Bonus :</b> 100 {gem}<vbr/>
-                            {/* You can add any additional content or formatting here */}
-                        </div>
-                    )}
+                    <div className="redeem-status">
+                        <Countdown timeRemaining={timeRemaining} />
+                    </div>
+                ) : (
+                    <div className="redeem-status">
+                        <b>Today's Daily Bonus:</b> 100 {gem}<br />
+                        {/* You can add any additional content or formatting here */}
+                    </div>
+                )}
                 {canRedeem && (
                     <button className="daily-question" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
                 )}
             </div>
 
-            {!quizStarted && ( // Step 2
-                    <button className="daily-question" onClick={() => setQuizStarted(true)}>Start Today's Quiz</button>
-                )}
-                {quizStarted && (
-                    <div className="daily-questions"> 
-                        <Questions setUserPoints={setUserPoints} userPoints={userPoints}/>
-                    </div>
-                )}
+            {!quizStarted && (
+                <button className="daily-question" onClick={() => setQuizStarted(true)}>Start Today's Quiz</button>
+            )}
+            {quizStarted && (
+                <div className="daily-questions"> 
+                    <Questions />
+                </div>
+            )}
         </div>
     )
 }
