@@ -21,14 +21,12 @@ export function UserProvider({ children }) {
       .then((data) => {
         setUser(data)
         setUserPoints(data.total_points_count)
-        // setLastDailyBonus(user.last_daily_bonus)
-        // setLastDailyGems(user.last_daily_gems)
-        // console.log(data) // Set the fetched user data
-        
-        
+        setLastDailyBonus(data.last_daily_bonus)
+        setLastDailyGems(data.last_daily_gems)
       })
       .catch((error) => {
-        console.error("Error fetching user:", error)
+        // console.error("No user logged in - " 
+        // + error)
         setUser(null)
       })
   }, [])
