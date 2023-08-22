@@ -30,7 +30,9 @@ class PointsController < ApplicationController
             user.last_gem_bonus = Time.now   
         end 
         point = user.points.create(point_params)
+        if user.points.last&.points_count != nil
         user.total_points_count += user.points.last&.points_count
+        end
         render json: point
     end
     
