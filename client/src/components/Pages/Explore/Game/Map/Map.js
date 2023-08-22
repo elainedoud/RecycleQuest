@@ -23,7 +23,7 @@ function Map({ gems, collectedCount, incrementCollected, collectedKnowledge, set
           const updatedCollectedKnowledge = [...collectedKnowledge, selectedGem.knowledge_blurb]
           incrementCollected(collectedCount + 1)
           setCollectedKnowledge(updatedCollectedKnowledge)
-          return { ...gem, hidden: true }
+          return { ...gem, hidden: true, clicked: true } // Set 'clicked' to true
         }
         return gem
       })
@@ -35,16 +35,12 @@ function Map({ gems, collectedCount, incrementCollected, collectedKnowledge, set
   return (
     <div className="map-container">
       <div className="background-image"></div>
-      
-      <div className="countdown">
-        <Countdown timeRemaining={nextBonusTime - new Date().getTime()} />
-      </div>
       <div className="gems">
         {gems.map((gem) => (
           <Gem
             key={gem.id}
             gem={gem}
-            hidden={gem.hidden}
+            hidden={gem.hidden || gem.clicked} // Hide clicked gems
             onClick={() => openKnowledge(gem)}
           />
         ))}
