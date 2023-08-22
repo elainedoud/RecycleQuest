@@ -2,23 +2,42 @@ import React from 'react'
 import { useFormik } from 'formik'
 import './NewLocation.css'
 
-const NewLocation = ({ onCancel, filteredLocations }) => {
+const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
   const initialValues = {
     name: '',
     address1: '',
     address2: '',
-    recyclables: '',
+    accepted_recyclables: '',
+    zipcode: '',
   }
 
   const formik = useFormik({
     initialValues,
     onSubmit: values => {
-      values.created_by = 0
-      const updatedLocations = {filteredLocations, values}
-      console.log(updatedLocations)
-      // setLocations(updatedLocations)
-      // setFilteredLocations(updatedLocations)
-      // onNewLocationSubmit()
+      values.created_by = 'isabella_mercer' // Change to the appropriate user
+    
+      fetch('/newlocation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json()
+          } else {
+            console.error('Error adding new location')
+          }
+        })
+        .then(newLocation => {
+          if (newLocation) {
+            onNewLocationSubmit(newLocation) // Update parent component's location state
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error)
+        })
     },
   })
 
@@ -26,7 +45,6 @@ const NewLocation = ({ onCancel, filteredLocations }) => {
     <div className="submit-location-window">
       <h2 className='add-location'>ADD FACILITY</h2>
       <form onSubmit={formik.handleSubmit}>
-        {/* <label htmlFor="name">Name</label> */}
         <input
           type="text"
           id="name"
@@ -36,7 +54,6 @@ const NewLocation = ({ onCancel, filteredLocations }) => {
           onChange={formik.handleChange}
         /> <br/>
 
-        {/* <label htmlFor="address1">Address 1</label> */}
         <input
           type="text"
           id="address1"
@@ -46,7 +63,6 @@ const NewLocation = ({ onCancel, filteredLocations }) => {
           onChange={formik.handleChange}
         /> <br/>
 
-        {/* <label htmlFor="address2">Address 2</label> */}
         <input
           type="text"
           id="address2"
@@ -56,13 +72,21 @@ const NewLocation = ({ onCancel, filteredLocations }) => {
           onChange={formik.handleChange}
         /> <br/>
 
-        {/* <label htmlFor="recyclables">Accepted Recyclables</label> */}
         <input
           type="text"
           id="recyclables"
-          name="recyclables"
+          name="accepted_recyclables"
           placeholder="Accepted Recyclables"
-          value={formik.values.recyclables}
+          value={formik.values.accepted_recyclables}
+          onChange={formik.handleChange}
+        /> <br/>
+
+        <input
+          type="text"
+          id="zipcode"
+          name="zipcode"
+          placeholder="Zip Code"
+          value={formik.values.zipcode}
           onChange={formik.handleChange}
         /> <br/> <br/>
 

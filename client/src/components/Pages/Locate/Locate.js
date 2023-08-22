@@ -1,70 +1,55 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useFormik } from 'formik'
 import NewLocation from './NewLocation'
 import './Locate.css'
 import Info from '../../Layout/Info/Info'
 import './NewLocation.css'
+import UserContext from "../../Context/UserContext"
 
-const Locate = ({ userPoints, setUserPoints }) => {
-  // Sample locations data
-  const [locations, setLocations] = useState([
-    {
-      'id': 1,
-      'name': 'Location A',
-      'address1': '123 Main St',
-      'address2': 'Suite 456',
-      'zip': 10002,
-      'recyclables': 'Plastic, Paper',
-      'created_by': 'User123',
-    },
-    {
-      'id': 2,
-      'name': 'Location B',
-      'address1': '456 Elm St',
-      'address2': '',
-      'zip': 7305,
-      'recyclables': 'Glass, Aluminum',
-      'created_by': 'User456',
-    },
-  ])
 
-  // Filtered locations for search
-  const [filteredLocations, setFilteredLocations] = useState(locations)
+const Locate = () => {
+  const { user, userPoints, setUserPoints } = useContext(UserContext)
+  const [locations, setLocations] = useState([])
+  const [filteredLocations, setFilteredLocations] = useState([])
+  const [showSubmitWindow, setShowSubmitWindow] = useState(false)
 
-  // Formik form handling
   const formik = useFormik({
     initialValues: {
       location: '',
+      recyclables: '',
     },
     onSubmit: values => {
-      console.log(values) // Log the submitted form values
-      handleSearch(values) // Trigger search after submission
+      handleSearch(values)
     },
   })
 
-  // Function to handle search based on user input
-  const handleSearch = ({ location }) => {
+  useEffect(() => {
+    fetch("/alllocations")
+      .then(r => r.json())
+      .then(data => {
+        setLocations(data)
+        setFilteredLocations(data)
+      })
+  }, [])
+
+  const handleSearch = ({ location, recyclables }) => {
     const filtered = locations.filter(loc => {
-      return (
-        location === '' || loc.zip === parseInt(location) // Compare zip directly
-      )
+      const Match = location === '' || loc.code === location.toString()
+      const recyclablesMatch = recyclables === '' || loc.accepted_recyclables.includes(recyclables)
+
+      return Match && recyclablesMatch
     })
     setFilteredLocations(filtered)
   }
 
-  const [showSubmitWindow, setShowSubmitWindow] = useState(false)
-
-  // Function to open the submit window
   const openSubmitWindow = () => {
     setShowSubmitWindow(true)
   }
 
-  // Function to cancel submission
   const onCancelSubmit = () => {
     setShowSubmitWindow(false)
   }
 
-  // Function to handle new location submission
   const onNewLocationSubmit = values => {
     setShowSubmitWindow(false)
     const updatedLocations = [...locations, values]
@@ -75,14 +60,22 @@ const Locate = ({ userPoints, setUserPoints }) => {
 
   return (
     <div>
-      <Info text="Search for local recycling plants by zip code! Earn points for contributing any missing facilities to our database!"/>
+      <Info text="Search for local recycling plants by zupcode or type of recycleable! Earn points for contributing any missing facilities to our database!" />
       <div className="search-container">
         <div className="search-bar">
           <input
             type="text"
             name="location"
-            placeholder="Search by Zip Code"
+            placeholder="Search by Zipcode"
             value={formik.values.location}
+            onChange={formik.handleChange}
+            className="locate"
+          />
+          <input
+            type="text"
+            name="recyclables"
+            placeholder="Search by Recyclables"
+            value={formik.values.recyclables}
             onChange={formik.handleChange}
             className="locate"
           />
@@ -95,23 +88,29 @@ const Locate = ({ userPoints, setUserPoints }) => {
         </div>
       </div>
       <div className="card-container">
-        {(filteredLocations.length > 0 ? filteredLocations : locations).map(location => (
-          <div key={location.id} className="location-card">
-            <h3>{location.name}</h3>
-            <p>{location.address1}</p>
-            <p>{location.address2}</p>
-            <p>Zipcode: {location.zip}</p> <br/>
-            <b><p>Recyclables: {location.recyclables}</p></b>
-            <i><p>Contributed By: {location.created_by}</p></i>
-            
+        {filteredLocations.length > 0 ? (
+          filteredLocations.map(location => (
+            <div key={location.id} className="location-card">
+              <h3>{location.name}</h3>
+              <p>{location.address_1}</p>
+              <p>{location.address_2}</p>
+              <p>Zip: {location.zipcode}</p>
+              <b><p>Recyclables: {location.accepted_recyclables}</p></b>
+              <i><p>Contributed By: {location.created_by}</p></i>
+            </div>
+          ))
+        ) : (
+          <div className="no-results">
+            <p>No results found.</p>
+            <button onClick={() => setFilteredLocations(locations)}>View All</button>
           </div>
-        ))}
+        )}
       </div>
       {showSubmitWindow && (
         <div className="submit-location-container">
           <NewLocation onNewLocationSubmit={onNewLocationSubmit} onCancel={onCancelSubmit} />
         </div>
-      )}
+      )} <br/><br/><br/><br/>
     </div>
   )
 }
