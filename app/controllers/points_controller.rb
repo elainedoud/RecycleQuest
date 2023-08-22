@@ -18,6 +18,9 @@ class PointsController < ApplicationController
     def addpoints
         user = User.find_by(id: params[:id])
         point = user.points.create(point_params)
+        if user.points.last&.points_count != nil
+        user.total_points_count += user.points.last&.points_count
+        end
         render json: point
     end
 
