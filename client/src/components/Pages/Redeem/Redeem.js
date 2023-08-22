@@ -18,15 +18,15 @@ function Redeem(){
         setCount(0)
     }
     return(
-        <div className="recyclopoints">      
-            <p className="stats-detail">
+        <div className="recyclopoints">   
+            <div className="stats-detail">
                 <div className="points-card"> 
                     <b>Highest Deposit:</b> 12 {recycle} <br/><br/>
                     <b>Days Since Last Deposit: </b> 3 Days <br/><br/>
                     <b>YTD Recycled:</b> 487 {recycle}<br/>
                 </div>        
-            </p>
-
+            </div>
+            <br/>
             <button className="redeem" onClick={handleSubmit}>REDEEM {count} RECYCLEABLES</button> <br/>
 
             <div className="count-buttons">

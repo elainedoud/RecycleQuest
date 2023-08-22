@@ -4,7 +4,11 @@ const UserContext = createContext()
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null)
-
+  const [userPoints, setUserPoints] = useState(null)
+  const [lastDailyBonus, setLastDailyBonus] = useState(null)
+  // const [lastDailyQuiz, setLastDailyQuiz] = useState(null)
+  const [lastDailyGems, setLastDailyGems] = useState(null)
+  
   useEffect(() => {
     fetch("/user")
       .then((res) => {
@@ -16,22 +20,22 @@ export function UserProvider({ children }) {
       })
       .then((data) => {
         setUser(data)
-        console.log(data) // Set the fetched user data
+        setUserPoints(data.total_points_count)
+        setLastDailyBonus(data.last_daily_bonus)
+        setLastDailyGems(data.last_daily_gems)
       })
       .catch((error) => {
-        console.error("Error fetching user:", error)
+        // console.error("No user logged in - " 
+        // + error)
         setUser(null)
       })
   }, [])
 
-  // Function to update the user data
-  const updateUser = (userData) => {
-    setUser(userData)
-  }
+  
 
-  // Return the UserContext Provider with the user and updateUser in value
+  // Return the UserContext Provider with the user and setUser in value
   return (
-    <UserContext.Provider value={{ user, updateUser }}>
+    <UserContext.Provider value={{ user, setUser, userPoints, setUserPoints }}>
       {children}
     </UserContext.Provider>
   )

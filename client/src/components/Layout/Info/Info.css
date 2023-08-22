@@ -1,7 +1,7 @@
 .info-container {
     position: relative;
     float: right;
-    right: 165px;
+    right: 175px;
     top: 5px;
     /* margin: 10px; */
     text-align: right;
@@ -9,15 +9,15 @@
   
   .info-icon {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
   
   .info-popup {
     display: none;
     position: fixed;
     top: 125px;
-    right: 220px;
+    right: 240px;
     text-align: center;
     background-color: var(--green);
     border: 1px solid var(--violet);

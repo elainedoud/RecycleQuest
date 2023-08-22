@@ -8,7 +8,7 @@ function Countdown({ timeRemaining }) {
     return (
         <div>
             <p className="redeemable">
-                You must wait {hoursRemaining} hours, {minutesRemaining} minutes, and {secondsRemaining} seconds for your next bonus!
+                Next bonus available in {hoursRemaining} hours, {minutesRemaining} minutes, and {secondsRemaining} seconds!
             </p>
         </div>
     )

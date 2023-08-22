@@ -6,7 +6,7 @@ import "./AuthCard.css"
 import UserContext from "../../Context/UserContext"
 
 function AuthCard() {
-  const { updateUser, user } = useContext(UserContext)
+  const { setUser, user, setUserPoints, userPoints } = useContext(UserContext)
   const [signUp, setSignUp] = useState(false)
   const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState("")
@@ -19,7 +19,7 @@ function AuthCard() {
 
   const handleSubmit = (values) => {
     if (loggedIn === true) {
-      updateUser({})
+      setUser(null)
       fetch("/logout", {
         method: "DELETE",
       })
@@ -43,14 +43,17 @@ function AuthCard() {
           }
         })
         .then((data) => {
-          updateUser(data)
+          setUser(data)
+          setUserPoints(data.total_points_count)
           setLoggedIn(true) // Set the loggedIn state to true when logged in
           navigate(`/home`)
         })
         .catch((error) => {
           setErrorMessage("Invalid credentials. Please check your username and password.")
           console.log(errorMessage)
+          
         })
+        
     }
   }
 
@@ -61,13 +64,17 @@ function AuthCard() {
 
   const alreadyLoggedIn = yup.object().shape({
     username: "",
+    emailaddress: "",
     password: "",
+    dateofbirth: "",
   })
 
   const formik = useFormik({
     initialValues: {
       username: "",
+      emailaddress: "",
       password: "",
+      dateofbirth: ""
     },
     validationSchema: loggedIn ? alreadyLoggedIn : formSchema,
     onSubmit: handleSubmit,
@@ -88,6 +95,7 @@ function AuthCard() {
         />
         <br />
         <br />
+        
         <input
           type="password"
           name="password"
@@ -99,14 +107,23 @@ function AuthCard() {
         <br />
         {signUp && (
           <>
-            <input
-              type="date"
-              name="birthday"
-              value={formik.values.birthday}
+              <input
+              type="text"
+              name="emailaddress"
+              placeholder="email address"
+              value={formik.values.emailaddress}
               onChange={formik.handleChange}
             />
-            {formik.touched.birthday && formik.errors.birthday ? (
-              <div>{formik.errors.birthday}</div>
+            <br />
+            <br />
+            <input
+              type="date"
+              name="dateofbirth"
+              value={formik.values.dateofbirth}
+              onChange={formik.handleChange}
+            />
+            {formik.touched.dateofbirth && formik.errors.dateofbirth ? (
+              <div>{formik.errors.dateofbirth}</div>
             ) : null}
             <br />
             <br />
@@ -117,7 +134,7 @@ function AuthCard() {
         </button>
 
         <p className="login">{signUp ? "Already a member?" : "Not a member?"}</p>
-        <button className="passive" onClick={handleClick}>
+        <button className="passive" onClick={handleClick} type="button" >
           {signUp ? "Log In!" : "Sign Up!"}
         </button>
         <br />

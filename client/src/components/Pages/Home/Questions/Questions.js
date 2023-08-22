@@ -1,28 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import "./Questions.css"
+import UserContext from "../../../Context/UserContext"
 
-function Questions({setUserPoints, userPoints}) {
-  const [totalPoints, setTotalPoints] = useState(200)
-  const [questions] = useState([{
-    "id": 1,
-    "query": "Which of the following can be recycled?",
-    "A": "plastic wrap",
-    "B": "dirty diaper",
-    "C": "bagged recyclables",
-    "answer": "A",
-    "created_at": "2023-08-18T02:04:25.307Z",
-    "updated_at": "2023-08-18T02:04:25.307Z"
-},
-{
-    "id": 2,
-    "query": "Which of the following can be recycled?",
-    "A": "wax coated cup",
-    "B": "car parts",
-    "C": "holiday lights",
-    "answer": "C",
-    "created_at": "2023-08-18T02:04:25.310Z",
-    "updated_at": "2023-08-18T02:04:25.310Z"
-},])
+function Questions() {
+  const { user, userPoints, setUserPoints } = useContext(UserContext)
+  
+  const [questions, setQuestions] = useState([])
 
   const [userScore, setUserScore] = useState(0)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -33,16 +16,17 @@ function Questions({setUserPoints, userPoints}) {
   let points = userScore * 100
 
   useEffect(() => {
-    //check if user has submitted daily questions today 
-    
+    fetch("/allquestions")
+    .then(r => r.json())
+    .then(data => setQuestions(data))
   })
 
   useEffect(() => {
     if (currentQuestionIndex >= questions.length) {
-    
       let newTotal = userPoints + points
       setUserPoints(newTotal)
-        // fetch(`/addPoints/${userId}/${pointsToAdd}`, {
+      // need structure for post request for persisting points 
+        // fetch(`/addPoints/${user.id}`, {
         //     method: "POST",
         //     headers: {
         //         "Content-Type": "application/json",
@@ -51,7 +35,7 @@ function Questions({setUserPoints, userPoints}) {
         // .then(response => {
         //     if (response.ok) {
         //         console.log("Points added successfully!");
-        //         setTotalPoints(totalPoints += pointsToAdd)
+        //         setUserPoints(newTotal)
         //     } else {
         //         console.error("Failed to add points.");
         //     }
@@ -74,9 +58,6 @@ function Questions({setUserPoints, userPoints}) {
     setUserAnswer(null)
     setCurrentQuestionIndex(currentQuestionIndex + 1)
   }
-
-
-
 
   return (
     <div className="daily-questions">
