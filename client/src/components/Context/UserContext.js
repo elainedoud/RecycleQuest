@@ -21,7 +21,11 @@ export function UserProvider({ children }) {
       .then((data) => {
         setUser(data)
         setUserPoints(data.total_points_count)
+        // setLastDailyBonus(user.last_daily_bonus)
+        // setLastDailyGems(user.last_daily_gems)
         // console.log(data) // Set the fetched user data
+        
+        
       })
       .catch((error) => {
         console.error("Error fetching user:", error)
@@ -29,25 +33,11 @@ export function UserProvider({ children }) {
       })
   }, [])
 
-  useEffect(()=> {
-    if(user){
-      setLastDailyBonus(user.last_daily_bonus)
-      // setLastDailyQuiz(user.last_daily_quiz)
-      setLastDailyGems(user.last_daily_gems)
-    }
-    else{
-      console.log("no user data yet.")
-    }
-  }, [user])
+  
 
-  // Function to update the user data
-  const updateUser = (userData) => {
-    setUser(userData)
-  }
-
-  // Return the UserContext Provider with the user and updateUser in value
+  // Return the UserContext Provider with the user and setUser in value
   return (
-    <UserContext.Provider value={{ user, updateUser, userPoints, setUserPoints }}>
+    <UserContext.Provider value={{ user, setUser, userPoints, setUserPoints }}>
       {children}
     </UserContext.Provider>
   )

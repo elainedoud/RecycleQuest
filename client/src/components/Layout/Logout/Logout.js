@@ -4,11 +4,11 @@ import UserContext from "../../Context/UserContext"
 import "./Logout.css"
 
 function Logout(){
-    const { updateUser } = useContext(UserContext)
+    const { setUser } = useContext(UserContext)
     const navigate = useNavigate()
   
     const handleLogout = () => {
-      updateUser(null)
+      setUser(null)
       fetch("/logout", {
         method: "DELETE",
       })

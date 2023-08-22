@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom" 
+import { useState, useContext } from "react"
+import AuthCard from "./components/Layout/AuthCard/AuthCard"
 import Home from "./components/Pages/Home/Home"
 import Explore from "./components/Pages/Explore/Explore"
 import Locate from "./components/Pages/Locate/Locate"
@@ -6,14 +8,14 @@ import Redeem from "./components/Pages/Redeem/Redeem"
 import SubmitLocation from "./components/Pages/SubmitLocation/SubmitLocation"
 import Points from "./components/Pages/PointsHistory/Points"
 import Leaderboard from "./components/Pages/Leaderboard/Leaderboard"
-import AuthCard from "./components/Layout/AuthCard/AuthCard"
+
 import Header from "./components/Layout/Header/Header"
 import Footer from "./components/Layout/Footer/Footer"
-import { useState, useContext } from "react"
-import './App.css'
 import PointsTab from "./components/Layout/Points/PointsTab"
 import UserContext from "./components/Context/UserContext"
 import Logout from "./components/Layout/Logout/Logout"
+import { UserProvider } from "./components/Context/UserContext"
+import './App.css'
 
 function App() {
   const { user } = useContext(UserContext)
@@ -25,11 +27,11 @@ function App() {
           <Header />
             <Routes>
               <Route path="/" element={<AuthCard />} />
+              <Route path="*" element="Error! Invalid Page." />
             </Routes>
           {/* <Footer /> */}
         </Router>
       </div>)}
-
 
   return(
     <div className="App">
@@ -55,29 +57,3 @@ function App() {
 }
 
 export default App
-
- /* To pull in information from the backend
-
-  get '/oneknowledge'  To get a question by its id
-  get '/allknowledge'  To get all the questions
-
-  get '/onelocation'   To get a location by its id
-  get '/alllocations'  To get all the locations
-
-  post '/assignpoints' To assign points when answer is correct
-  (The ruby code for assigning points made need to be revised)
-
-  get '/userpoints'    To get/show a user's points
-  get '/allpoints'    To show all points for all users
-
-  get '/question'   To show a question by its id
-  get '/allquestions'  To show all questions
-
-  get '/user'   To show a user by their id
-  get '/allusers'  To show all the users
-  post '/newuser'  To add a user
- 
-  post '/login'  To login a user (create session)
-  delete '/logout'  To logout a user (delete session)
- 
- */

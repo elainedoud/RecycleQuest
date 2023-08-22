@@ -6,7 +6,7 @@ import "./AuthCard.css"
 import UserContext from "../../Context/UserContext"
 
 function AuthCard() {
-  const { updateUser, user } = useContext(UserContext)
+  const { setUser, user, setUserPoints, userPoints } = useContext(UserContext)
   const [signUp, setSignUp] = useState(false)
   const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState("")
@@ -19,7 +19,7 @@ function AuthCard() {
 
   const handleSubmit = (values) => {
     if (loggedIn === true) {
-      updateUser({})
+      setUser(null)
       fetch("/logout", {
         method: "DELETE",
       })
@@ -43,14 +43,17 @@ function AuthCard() {
           }
         })
         .then((data) => {
-          updateUser(data)
+          setUser(data)
+          setUserPoints(data.total_points_count)
           setLoggedIn(true) // Set the loggedIn state to true when logged in
           navigate(`/home`)
         })
         .catch((error) => {
           setErrorMessage("Invalid credentials. Please check your username and password.")
           console.log(errorMessage)
+          
         })
+        
     }
   }
 
