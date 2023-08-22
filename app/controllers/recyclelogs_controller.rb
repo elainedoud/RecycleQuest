@@ -6,10 +6,12 @@ def index
 end
 
 def newlog
-    log = Recyclelog.new(user_id: user_id, date: Time.now, amount: amount)
-    User.total_points_count += amount
+    user = User.find_by(id: params[:id])
+    log = Recyclelog.create(recyclelog_params)
+   # User.total_points_count += amount
     render json: log
 end
+#This method is still in progress
 
 def create
     log = Recyclelog.new(recyclelog_params)
@@ -17,7 +19,8 @@ def create
 end
 
 def recyclelog_params
-    params.permit(:user_id, :date, :amount, :id, :recyclelog)
+    params["date"] = Time.now
+    params.permit(:user_id, :date, :amount, :id)
 end
 
 end
