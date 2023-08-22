@@ -62,8 +62,7 @@ function Home() {
         })
         .then(response => {
             if (response.ok) {
-                console.log(response)
-                console.log("Points added successfully!");
+                // console.log("Points added successfully!");
                 const newPoints = userPoints + pointsToAdd
                 setUserPoints(newPoints)
             } else {

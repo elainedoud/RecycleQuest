@@ -1,19 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import Knowledge from '../Knowledge/Knowledge'
 import Gem from '../Gem/Gem'
+import Countdown from '../../../Home/Countdown'
 import './Map.css'
-import UserContext from "../../../../Context/UserContext"
+import UserContext from '../../../../Context/UserContext'
 
-function Map() {
-  const { user, userPoints, setUserPoints } = useContext(UserContext)
-  const [gems, setGems] = useState([]) // Initialize with an empty array
-
-  useEffect(() => {
-    fetch('/allknowledge')
-      .then(r => r.json())
-      .then(data => setGems(data)) // Update the gems state with fetched data
-  }, []) // Empty dependency array to ensure the effect runs only once
-
+function Map({ gems, collectedCount, incrementCollected, collectedKnowledge, setCollectedKnowledge }) {
+  const { userPoints, setUserPoints } = useContext(UserContext)
+  const [nextBonusTime, setNextBonusTime] = useState(new Date().getTime() + 24 * 60 * 60 * 1000)
   const [selectedGem, setSelectedGem] = useState(null)
 
   const openKnowledge = (gem) => {
@@ -26,11 +20,14 @@ function Map() {
         if (gem.id === selectedGem.id) {
           const newPoints = userPoints + 100
           setUserPoints(newPoints)
-          return { ...gem, hidden: true }
+          const updatedCollectedKnowledge = [...collectedKnowledge, selectedGem.knowledge_blurb]
+          incrementCollected(collectedCount + 1)
+          setCollectedKnowledge(updatedCollectedKnowledge)
+          return { ...gem, hidden: true, clicked: true } // Set 'clicked' to true
         }
         return gem
       })
-      setGems(updatedGems)
+
       setSelectedGem(null)
     }
   }
@@ -43,13 +40,23 @@ function Map() {
           <Gem
             key={gem.id}
             gem={gem}
-            hidden={gem.hidden}
+            hidden={gem.hidden || gem.clicked} // Hide clicked gems
             onClick={() => openKnowledge(gem)}
           />
         ))}
       </div>
       {selectedGem && (
-        <Knowledge text={selectedGem.knowledge_blurb} onClose={closeKnowledge} userPoints={userPoints} setUserPoints={setUserPoints} />
+        <Knowledge knowledge={selectedGem.knowledge_blurb} character={selectedGem.character_name} onClose={closeKnowledge} userPoints={userPoints} setUserPoints={setUserPoints} />
+      )}
+      {collectedCount === gems.length && (
+        <div className="collected-knowledge">
+          <p>Collected Knowledge:</p>
+          <ul>
+            {collectedKnowledge.map((knowledge, index) => (
+              <li key={index}>{knowledge}</li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   )
