@@ -17,7 +17,7 @@ def create
 end
 
 def recyclelog_params
-    params.permit(:user_id, :date, :amount)
+    params.permit(:user_id, :date, :amount, :id, :recyclelog)
 end
 
 end
