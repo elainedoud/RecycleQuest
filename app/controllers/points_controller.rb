@@ -19,36 +19,29 @@ class PointsController < ApplicationController
         user = User.find_by(id: params[:id])
         point = user.points.create(point_params)
         render json: point
-            end
-        end
+    end
 
-  #  def addpointsbytype
-   #     user = User.find_by(username: params[:username])
-    #    if points_type == daily_bonus
-    #        User.last_daily_bonus = Time.now
-    #        User.total_points_count += points_count
-   #        point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count[points_count])
-    #    elsif points_type == daily_questions
-    #        User.last_gem_bonus = Time.now
-    #        User.total_points_count += points_count
-    #        point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count[points_count])
-    #    elsif points_type == location_redemption
-     #       point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count[points_count])
-    #    elsif points_type == recycle_redemption
-    #        point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count[points_count])
-    #            end
-    #        end
-    #    end 
-  #  end
+    def addpointsbytype
+        user = User.find_by(id: params[:id])
+        points_type = user.points.points_type
+        if points_type_params[points_type] == 'daily_bonus'
+            user.last_daily_bonus = Time.now
+            user.total_points_count += Point.points_count
+        elsif points_type_params[points_type] == 'daily_questions'
+            user.last_gem_bonus = Time.now
+            user.total_points_count += Point.points_count
+        end 
+        point = user.points.create(point_params)
+        render json: point
+    end
     
-
     def create
         point = Point.new(point_params)
         render json: point
     end
 
     def point_params
-        params.permit(:user_id, :points_type, points_type_params(:points_count), :date)
+        params.permit(:user_id, :points_type, :points_count, :date)
     end
 
     def points_type_params(points_type)
