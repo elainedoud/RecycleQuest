@@ -6,13 +6,21 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+puts "Clearing existing data..."
+Knowledge.destroy_all
+Question.destroy_all
+User.destroy_all
+Point.destroy_all
+Location.destroy_all
+Recyclelog.destroy_all
+
 puts "Seeding data"
 
-first_knowledge = Knowledge.create(y: 450, x: 500, character_name: "Oliver Puddlebrook", knowledge_blurb: "Oliver Puddlebrook says: 'Clean aluminum cans and rinsed glass bottles can always be recycled.'")
-second_knowledge = Knowledge.create(y: 1250, x: 490, character_name: "Felix Whimsy", knowledge_blurb: "Felix Whimsy says: 'Paper, including junk mail, can almost always be recycled. The only exceptions are shredded paper or paper that is contaminated (ie. food waste).'")
-third_knowledge = Knowledge.create(y: 1180, x: 2735, character_name: "Penelope Puzzle", knowledge_blurb: "Penelope Puzzle says: 'Recycling guidelines and rules are often determined by local laws and ordinances, so it's important to familiarize yourself with local recycling regulations.'")
-fourth_knowledge = Knowledge.create(y: 3520, x: 2245, character_name: "Amelia Starshine", knowledge_blurb: "Amelia Starshine says: 'Each ton of paper that is recycled saves seventeen trees.' ")
-fifth_knowledge = Knowledge.create(y: 3050, x: 480, character_name: "Simon Feathers", knowledge_blurb: "Simon Feathers says: 'When in doubt, do not recycle an item that you are unsure of.  This could contaminate the other items in the recycling bin.' ")
+first_knowledge = Knowledge.create(y: 260, x: 250, character_name: "Oliver Puddlebrook", knowledge_blurb: "Oliver Puddlebrook says: 'Clean aluminum cans and rinsed glass bottles can always be recycled.'")
+second_knowledge = Knowledge.create(y: 770, x: 315, character_name: "Felix Whimsy", knowledge_blurb: "Felix Whimsy says: 'Paper, including junk mail, can almost always be recycled. The only exceptions are shredded paper or paper that is contaminated (ie. food waste).'")
+third_knowledge = Knowledge.create(y: 720, x: 1800, character_name: "Penelope Puzzle", knowledge_blurb: "Penelope Puzzle says: 'Recycling guidelines and rules are often determined by local laws and ordinances, so it's important to familiarize yourself with local recycling regulations.'")
+fourth_knowledge = Knowledge.create(y: 2055, x: 1480, character_name: "Amelia Starshine", knowledge_blurb: "Amelia Starshine says: 'Each ton of paper that is recycled saves seventeen trees.' ")
+fifth_knowledge = Knowledge.create(y: 1800, x: 300, character_name: "Simon Feathers", knowledge_blurb: "Simon Feathers says: 'When in doubt, do not recycle an item that you are unsure of.  This could contaminate the other items in the recycling bin.' ")
 #sixth_knowledge = Knowledge.create(character_name: "Jasper Fluttery", knowledge_blurb: "The recycling symbol on the bottom of a plastic item specifies the type of plastic.  You will want to check local ordinances to determine if your town or city recycles that number.")
 #seventh_knowledge = Knowledge.create(character_name: "Leo Starwhisper", knowledge_blurb:"Cereal boxes can be recycled as long as your local ordinance accepts cardboard. In contrast, pizza boxes are rarely recyclable, because of food contamination and since some pizza boxes are not pure cardboard.' ")
 
@@ -27,11 +35,11 @@ eighth_question = Question.create(query: "What type of paper should I not put in
 ninth_question = Question.create(query: "What does the number in the recycling symbol on the bottom of a plastic item mean?", A: "serial batch", B: "nothing", C: "it specifies the type of plastic; check local ordinances to confirm if your town recycles that number", answer: "C")
 tenth_question = Question.create(query: "Which of the following can be recycled?", A: "plastic straw", B: "cereal box", C: "light bulbs", answer: "B")
 
-first_user = User.create(username: "isabella_mercer", password: "123", emailaddress: "catmomma@gmail.com", dateofbirth: "10-17-1990", total_points_count: 10, last_gem_bonus:'2023-08-21,08:15', last_daily_bonus:'2023-03-19,18:55')
-second_user = User.create(username: "keeganharrington3", password: "123", emailaddress: "keegan3@me.com", dateofbirth: "03-04-1987", total_points_count: 8, last_gem_bonus:'2023-07-15,16:45', last_daily_bonus:'2023-02-14,09:10')
-third_user = User.create(username: "liamdonovan", password: "123", emailaddress: "donovanbooks98@aol.com", dateofbirth: "12-12-1998", total_points_count: 12, last_gem_bonus:'2023-06-10,10:30', last_daily_bonus:'2023-01-09,14:25')
-fourth_user = User.create(username: "noah_sinclair", password: "123", emailaddress: "noahsinclair@gmail.com", dateofbirth: "05-23-1995", total_points_count: 6, last_gem_bonus:'2023-05-05,20:20', last_daily_bonus:'2022-12-04,21:40')
-fifth_user = User.create(username: "avamontgomery", password: "123", emailaddress: "avamusiclover@yahoo.com", dateofbirth: "11-8-2002", total_points_count: 4, last_gem_bonus:'2023-04-01,12:00', last_daily_bonus:'2022-11-29,05:05')
+first_user = User.create(username: "isabella_mercer", password: "123", emailaddress: "catmomma@gmail.com", dateofbirth: "10-17-1990", total_points_count: 100, last_gem_bonus:'2023-08-21,08:15', last_daily_bonus:'2023-08-20,18:55')
+second_user = User.create(username: "keeganharrington3", password: "123", emailaddress: "keegan3@me.com", dateofbirth: "03-04-1987", total_points_count: 800, last_gem_bonus:'2023-07-15,16:45', last_daily_bonus:'2023-02-14,09:10')
+third_user = User.create(username: "liamdonovan", password: "123", emailaddress: "donovanbooks98@aol.com", dateofbirth: "12-12-1998", total_points_count: 1200, last_gem_bonus:'2023-06-10,10:30', last_daily_bonus:'2023-01-09,14:25')
+fourth_user = User.create(username: "noah_sinclair", password: "123", emailaddress: "noahsinclair@gmail.com", dateofbirth: "05-23-1995", total_points_count: 600, last_gem_bonus:'2023-05-05,20:20', last_daily_bonus:'2022-12-04,21:40')
+fifth_user = User.create(username: "avamontgomery", password: "123", emailaddress: "avamusiclover@yahoo.com", dateofbirth: "11-8-2002", total_points_count: 400, last_gem_bonus:'2023-04-01,12:00', last_daily_bonus:'2022-11-29,05:05')
 
 one_point = Point.create(user: first_user, question: first_question, points_count: 2, points_type: "daily_bonus", date:'2023,07,12')
 two_point= Point.create(user: first_user, question: second_question, points_count: 2, points_type: "daily_bonus", date:'2023,08,02')
