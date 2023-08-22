@@ -17,7 +17,7 @@ class PointsController < ApplicationController
 
     def addpoints
         user = User.find_by(username: params[:username])
-        point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count)
+        point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count[points_count])
         render json: point
             end
         end
@@ -25,17 +25,17 @@ class PointsController < ApplicationController
     def addpointsbytype
         user = User.find_by(username: params[:username])
         if points_type == daily_bonus
-            User.last_daily_bonus == Time.now
+            User.last_daily_bonus = Time.now
             User.total_points_count += points_count
-            point = Point.create(:user_id = user.id, :points_type = points_type_params[:points_type], :points_count)
+            point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count[points_count])
         elsif points_type == daily_questions
-            User.last_gem_bonus == Time.now
+            User.last_gem_bonus = Time.now
             User.total_points_count += points_count
-            point = Point.create(:user_id = user.id, :points_type = points_type_params[:points_type], :points_count)
+            point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count[points_count])
         elsif points_type == location_redemption
-            point = Point.create(:user_id = user.id, :points_type = points_type_params[:points_type], :points_count)
+            point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count[points_count])
         elsif points_type == recycle_redemption
-            point = point = Point.create(:user_id = user.id, :points_type = points_type_params[:points_type], :points_count)
+            point = Point.create(:user_id: user.id, :points_type: points_type_params[:points_type], :points_count[points_count])
                 end
             end
         end 
