@@ -46,7 +46,7 @@ class PointsController < ApplicationController
     end
 
     def point_params
-        params.permit(:id, :point, :user_id, :points_type, :points_count, :date)
+        params.permit(:user_id, :points_type, :points_count, :date)
     end
 
     def points_type_params(points_type)
