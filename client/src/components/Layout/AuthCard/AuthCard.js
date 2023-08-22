@@ -64,13 +64,17 @@ function AuthCard() {
 
   const alreadyLoggedIn = yup.object().shape({
     username: "",
+    emailaddress: "",
     password: "",
+    dateofbirth: "",
   })
 
   const formik = useFormik({
     initialValues: {
       username: "",
+      emailaddress: "",
       password: "",
+      dateofbirth: ""
     },
     validationSchema: loggedIn ? alreadyLoggedIn : formSchema,
     onSubmit: handleSubmit,
@@ -91,6 +95,7 @@ function AuthCard() {
         />
         <br />
         <br />
+        
         <input
           type="password"
           name="password"
@@ -102,14 +107,23 @@ function AuthCard() {
         <br />
         {signUp && (
           <>
-            <input
-              type="date"
-              name="birthday"
-              value={formik.values.birthday}
+              <input
+              type="text"
+              name="emailaddress"
+              placeholder="email address"
+              value={formik.values.emailaddress}
               onChange={formik.handleChange}
             />
-            {formik.touched.birthday && formik.errors.birthday ? (
-              <div>{formik.errors.birthday}</div>
+            <br />
+            <br />
+            <input
+              type="date"
+              name="dateofbirth"
+              value={formik.values.dateofbirth}
+              onChange={formik.handleChange}
+            />
+            {formik.touched.dateofbirth && formik.errors.dateofbirth ? (
+              <div>{formik.errors.dateofbirth}</div>
             ) : null}
             <br />
             <br />
@@ -120,7 +134,7 @@ function AuthCard() {
         </button>
 
         <p className="login">{signUp ? "Already a member?" : "Not a member?"}</p>
-        <button className="passive" onClick={handleClick}>
+        <button className="passive" onClick={handleClick} type="button" >
           {signUp ? "Log In!" : "Sign Up!"}
         </button>
         <br />
