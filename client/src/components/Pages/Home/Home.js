@@ -45,6 +45,9 @@ function Home() {
             setTimerStopped(false)
             setTimeRemaining(24 * 60 * 60 * 1000)
 
+
+        // Elaine to confirm this endpoint
+          
         fetch(`/addpointsbytype?id=${user.id}`, {
             method: "POST",
             headers: {
@@ -59,6 +62,7 @@ function Home() {
         })
         .then(response => {
             if (response.ok) {
+                console.log(response)
                 console.log("Points added successfully!");
                 const newPoints = userPoints + pointsToAdd
                 setUserPoints(newPoints)
