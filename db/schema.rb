@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_21_170223) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_22_153821) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_170223) do
     t.integer "total_points_count"
     t.datetime "last_gem_bonus"
     t.datetime "last_daily_bonus"
+    t.datetime "last_daily_question"
   end
 
 end
