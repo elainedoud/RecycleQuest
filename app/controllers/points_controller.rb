@@ -23,17 +23,19 @@ class PointsController < ApplicationController
 
     def addpointsbytype
         user = User.find_by(id: params[:id])
-        points_type = user.points.last&.points_type
+        points_type = user.self.points.points_type
+        #points_type = user.points.last&.points_type
         if points_type == 'daily_bonus'
             user.last_daily_bonus = Time.now
         elsif points_type == 'daily_questions'
-            user.last_daily_question = Time.now  
+            user.last_daily_question = Time.now 
         elsif points_type == 'daily_gem'
             user.last_gem_bonus = Time.now
         end 
         point = user.points.create(point_params)
-        if user.points.last&.points_count != nil
-        user.total_points_count += user.points.last&.points_count
+        if user.self.points.points_count != nil
+       # if user.points.last&.points_count != nil
+        user.total_points_count += user.self.points.points_count
         end
         render json: point
     end
@@ -53,6 +55,14 @@ class PointsController < ApplicationController
             params.permit(:points_type)
         end
     end
+
+   # def format_date
+    #    if Point.first.date != nil
+    #    date = Point.first.date
+   #     formatted_date = date.strftime("%Y-%m-%d")
+    #    render json: formatted_date
+   #     end 
+ #   end
 
 
    
