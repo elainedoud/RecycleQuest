@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   get '/allknowledge', to: "knowledges#show_all"
 
   get '/onelocation', to: "locations#index"
-  get '/alllocations', to: "locations#show_all" #Returns all location entries
-  post '/newlocation', to: "locations#create" #To create a new location on fronted
+  get '/alllocations', to: "locations#show_all" 
+  post '/newlocation', to: "locations#create" 
 
   post '/assignpoints', to: "points#assign_points"
   get '/allpoints', to: "points#index"
