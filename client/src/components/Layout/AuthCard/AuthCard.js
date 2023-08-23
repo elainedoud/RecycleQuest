@@ -84,9 +84,12 @@ function AuthCard() {
     <><br /><br />
     <div className="auth comic-border">
       <form className="auth-form" onSubmit={formik.handleSubmit}>
-        <h4>{signUp ? "Enter your credentials to sign up!" : "Enter your credentials to log in!"}</h4>
+        
+        
+        <h4 className="auth-form">{signUp ? "Enter your credentials to sign up!" : "Enter your credentials to log in!"}</h4>
         <br />
         <input
+          className="auth"
           type="text"
           name="username"
           placeholder="username"
@@ -97,6 +100,7 @@ function AuthCard() {
         <br />
         
         <input
+          className="auth"
           type="password"
           name="password"
           placeholder="password"
@@ -108,6 +112,7 @@ function AuthCard() {
         {signUp && (
           <>
               <input
+              className="auth"
               type="text"
               name="emailaddress"
               placeholder="email address"
@@ -117,6 +122,7 @@ function AuthCard() {
             <br />
             <br />
             <input
+              className="auth"
               type="date"
               name="dateofbirth"
               value={formik.values.dateofbirth}

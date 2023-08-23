@@ -10,7 +10,14 @@
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     max-width: 400px;
     margin-top: 0 auto;
+    white-space: pre-line;
 
+  }
+
+  input.auth {
+    /* border-color: var(--violet) !important; */
+  background-color: var(--trans-white);
+  color: var(--darkest-blue);
   }
   
   .auth-form label {
@@ -54,4 +61,10 @@
 
 ul.errors {
   background-color: var(--white);
+}
+
+h4.auth-form{
+  /* font-weight: bold; */
+  text-transform: uppercase;
+  font-size: 20px;
 }

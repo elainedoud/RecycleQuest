@@ -25,8 +25,8 @@ h2.add-location {
     color: var(--violet);
   }
 
-  input{
-    border-color: var(--violet) !important;
+  input.new-location{
+    border-color: var(--light-blue) !important;
     background-color: var(--darkest-blue);
     color: var(--light-blue);
     border-radius: 15px;
@@ -34,8 +34,8 @@ h2.add-location {
     margin: 5px;
   }
   
-  input::placeholder {
-    color: var(--violet); /* Set placeholder text color */
+  input::placeholder.new-location {
+    color: var(--light-blue); /* Set placeholder text color */
   }
 
   button.add-facility{

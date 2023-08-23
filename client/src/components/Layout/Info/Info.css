@@ -2,7 +2,7 @@
     position: relative;
     float: right;
     right: 175px;
-    top: 5px;
+    top: 15px;
     /* margin: 10px; */
     text-align: right;
   }
@@ -14,9 +14,9 @@
   }
   
   .info-popup {
-    display: none;
+    /* display: none; */
     position: fixed;
-    top: 125px;
+    top: 155px;
     right: 240px;
     text-align: center;
     background-color: var(--green);

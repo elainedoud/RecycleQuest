@@ -31,3 +31,11 @@ img {
     margin-right: auto;
 
 }
+
+.gem-counter{
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--green);
+    /* margin-top: 30px; */
+    letter-spacing: 2px;
+}

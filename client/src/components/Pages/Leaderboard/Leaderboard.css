@@ -61,3 +61,20 @@
     font-weight: bolder;
     font-size: 20px;
 }
+
+h2.leaderboard {
+    color: var(--green)
+}
+
+.more-points{
+    margin-bottom: 150px;
+}
+
+h3.more{
+    font-weight: bold;
+    color: var(--green)
+}
+
+button.nav-buttons{
+    margin: 10px;
+}

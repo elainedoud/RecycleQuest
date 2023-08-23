@@ -13,7 +13,7 @@ body {
 
 button.redeem, button.daily-question {
     padding: 50px 50px;
-    font-size: 25px;
+    font-size: 22px;
     color: #fff;   
     border-radius: 20px;
     width: 100%;
@@ -35,7 +35,7 @@ points-detail {
     color: var(--light-blue);
     padding: 20px;
     border: 1px solid var(--green);
-    /* margin-bottom: 20px; */
+    margin-bottom: 20px;
     border-radius: 15px;
     text-transform: uppercase;
     width: 30%;

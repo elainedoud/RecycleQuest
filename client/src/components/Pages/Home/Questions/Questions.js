@@ -1,47 +1,40 @@
 import React, { useState, useEffect, useContext } from "react"
 import "./Questions.css"
 import UserContext from "../../../Context/UserContext"
+import Countdown from "../Countdown"
 
-function Questions() {
-  const { user, userPoints, setUserPoints } = useContext(UserContext)
-  
+function Questions({ timeRemainingQuiz, redeemPointsQuiz, setQuizScores }) {
+  const { user, userPoints, setUserPoint, quizPoints, setQuizPoints  } = useContext(UserContext)
+
   const [questions, setQuestions] = useState([])
-
   const [userScore, setUserScore] = useState(0)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [userAnswer, setUserAnswer] = useState(null)
   const [answered, setAnswered] = useState(false)
 
   let score = `${userScore}/${questions.length}`
-  let points = userScore * 100
+  setQuizPoints(userScore * 100)
 
   useEffect(() => {
     fetch("/allquestions")
-    .then(r => r.json())
-    .then(data => setQuestions(data))
-  })
+      .then((r) => r.json())
+      .then((data) => {
+        const shuffledQuestions = data.sort(() => 0.5 - Math.random())
+        const randomQuestions = shuffledQuestions.slice(0, 5)
+        setQuestions(randomQuestions)
+      })
+  }, [])
+
+  const checkQuizCompletion = () => {
+    if (currentQuestionIndex >= questions.length && questions.length != 0) {
+      redeemPointsQuiz(30)
+      setQuizScores(userScore, quizPoints)
+    }
+  }
 
   useEffect(() => {
-    if (currentQuestionIndex >= questions.length) {
-      let newTotal = userPoints + points
-      setUserPoints(newTotal)
-      // need structure for post request for persisting points 
-        // fetch(`/addPoints/${user.id}`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        // })
-        // .then(response => {
-        //     if (response.ok) {
-        //         console.log("Points added successfully!");
-        //         setUserPoints(newTotal)
-        //     } else {
-        //         console.error("Failed to add points.");
-        //     }
-        // });
-    }
-  }, [currentQuestionIndex, questions.length, userScore]);
+    checkQuizCompletion()
+  }, [currentQuestionIndex, questions])
 
   const handleAnswerSelect = (selectedAnswer) => {
     if (!answered) {
@@ -50,6 +43,7 @@ function Questions() {
       }
       setUserAnswer(selectedAnswer)
       setAnswered(true)
+      checkQuizCompletion() // Check for quiz completion here
     }
   }
 
@@ -115,8 +109,10 @@ function Questions() {
         <p className="redeemable">
           Daily Quiz completed. <br/>
           Your score: {score}<br/>
-          Points Eearned: {points}
-        </p></div>
+          Points Eearned: {quizPoints}
+        </p>
+        <Countdown timeRemaining={timeRemainingQuiz}/></div>
+        
       )}
     </div>
   )
