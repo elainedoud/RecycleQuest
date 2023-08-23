@@ -2,11 +2,13 @@ import React, { useState, useEffect, useContext } from "react"
 import UserContext from "../../Context/UserContext"
 import './Leaderboard.css'
 import Info from "../../Layout/Info/Info"
+import {useNavigate } from "react-router-dom"
 
 function Leaderboard() {
   const { user, userPoints } = useContext(UserContext) // Get the currently logged-in user from context
 
   const [users, setUsers] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch('/allusers')
@@ -45,8 +47,13 @@ function Leaderboard() {
       {leader && userPoints === leader.total_points_count && (
         <p>You are #1 in the leaderboards! Congratulations! </p>
       )}
-      </div>
-     
+
+      
+      </div> <br/><br/>
+        <h3>WANT TO EARN MORE POINTS?</h3>
+        <button className="nav-buttons" onClick={() => navigate('/explore')}>Explore </button>
+      <button className="nav-buttonson" onClick={() => navigate('/redeem')}> Recycle</button>
+
     </>
   )
 }

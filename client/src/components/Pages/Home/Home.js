@@ -42,8 +42,7 @@ function Home() {
     const canRedeemQuiz = timeSinceLastQuiz > 24 * 60 * 60 * 1000
     const [timeRemainingQuiz, setTimeRemainingQuiz] = useState(canRedeemQuiz ? 0 : 24 * 60 * 60 * 1000 - timeSinceLastQuiz)
     const [timerStoppedQuiz, setTimerStoppedQuiz] = useState(canRedeemQuiz)
-    
-    
+
 
     // console.log("last quiz time: " + lastQuizTime)
     // console.log("time since last quiz: " + timeSinceLastQuiz)
@@ -101,6 +100,7 @@ function Home() {
             setLastDailyBonus()
             setTimerStopped(false)
             setTimeRemaining(24 * 60 * 60 * 1000)
+            setQuizPoints(pointsToAdd)
           }
     }
 
@@ -142,7 +142,7 @@ function Home() {
     // console.log(timeRemaining)
     // console.log(timeRemainingQuiz)
 
-    const [score, setScore] = useState(null)
+    const [score, setScore] = useState(quizPoints/100)
     const [points, setPoints] = useState(null)
     const setQuizScores = (quizscore, totalquestionCount) => {
         setScore(quizscore)
@@ -168,7 +168,7 @@ function Home() {
                 )}
             </div>
 
-            {!quizStarted && canRedeemQuiz && (
+            {!quizStarted && canRedeemQuiz && !quizCompleted && (
                 <button className="daily-question" onClick={() => setQuizStarted(true)}>Start Today's Quiz</button>
             )}
 
@@ -188,7 +188,7 @@ function Home() {
                     <p className="redeemable">
                     Daily Quiz completed. <br/>
                     Your score: {score}<br/>
-                    Points Eearned: {points}
+                    Points Eearned: {quizPoints}
                     </p>
 
                     <Countdown timeRemaining={timeRemainingQuiz} />

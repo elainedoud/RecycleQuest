@@ -14,6 +14,10 @@ export function UserProvider({ children }) {
   const [remainingTimeQuiz, setRemainingTimeQuiz] = useState(0)
   const [quizCompleted, setQuizCompleted] = useState(false)
   const [quizPoints, setQuizPoints] = useState(null)
+  const [gemsCollected, setGemsCollected] = useState(false)
+  const [collectedKnowledge, setCollectedKnowledge] = useState(user ? user.collected_knowledge : []);
+
+  console.log(gemsCollected)
   //authenticate user based on backend session
   useEffect(() => {
     fetch("/user")
@@ -67,7 +71,11 @@ export function UserProvider({ children }) {
       quizCompleted, 
       setQuizCompleted,
       quizPoints, 
-      setQuizPoints  
+      setQuizPoints,
+      gemsCollected, 
+      setGemsCollected,
+      collectedKnowledge, 
+      setCollectedKnowledge
       }}>
       {children}
     </UserContext.Provider>
