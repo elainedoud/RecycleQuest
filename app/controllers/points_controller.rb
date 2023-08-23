@@ -23,10 +23,15 @@ class PointsController < ApplicationController
 
     def addpointsbytype
         user = User.find_by(id: params[:id])
-        point = user.points.create(point_params)
-        render json: point
-        user.total_points_count += point.points_count
+        if user
+            point = user.points.create(point_params)
+            render json: point
+          else
+            render json: { error: "User not found" }, status: :not_found
+          end
+        #user.total_points_count += point.points_count
     end
+    #Why is user id not updating to User.id? - because user is not being found
 
    # def addpointsbytype
    #     user = User.find_by(id: params[:id])
