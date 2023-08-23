@@ -9,8 +9,7 @@ export function UserProvider({ children }) {
   const [lastDailyQuiz, setLastDailyQuiz] = useState(null)
   const [lastDailyGems, setLastDailyGems] = useState(null)
   const [recyclingHistory, setRecyclingHistory] = useState([])
-
-
+  const [locations, setLocations] = useState([])
 
   //authenticate user based on backend session
   useEffect(() => {
@@ -39,7 +38,7 @@ export function UserProvider({ children }) {
 
   // Return the UserContext Provider with the user and setUser in value
   return (
-    <UserContext.Provider value={{ user, setUser, userPoints, setUserPoints, setLastDailyGems, lastDailyGems, lastDailyBonus, setLastDailyBonus, lastDailyQuiz, setLastDailyQuiz, recyclingHistory, setRecyclingHistory  }}>
+    <UserContext.Provider value={{ user, setUser, userPoints, setUserPoints, setLastDailyGems, lastDailyGems, lastDailyBonus, setLastDailyBonus, lastDailyQuiz, setLastDailyQuiz, recyclingHistory, setRecyclingHistory, locations, setLocations  }}>
       {children}
     </UserContext.Provider>
   )
