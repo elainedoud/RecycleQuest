@@ -13,13 +13,14 @@ body {
    
 }
 
-/* button.redeem {
+button.redeem-recycle {
     padding: 50px 50px;
     font-size: 25px;
     color: #fff;   
     border-radius: 20px;
-    width: 100%;
-} */
+    width: 300px;
+}
+
 
 p {
     color: var(--light-blue)
@@ -38,7 +39,7 @@ div.stats-detail {
     padding: 50px 10px ;
     border-radius: 30px;
     text-transform: uppercase;
-    max-width: 30%;
+    max-width: 70%;
     margin: auto;
     
 }

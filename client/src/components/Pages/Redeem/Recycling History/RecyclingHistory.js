@@ -1,11 +1,12 @@
 import React from 'react'
+import './RecyclingHistory.css'
 
-function RecyclingHistory({ recHistory }) {
+function RecyclingHistory({ recyclingHistory }) {
   return (
     <div className="recycling-history">
-      <h2>Recycling History</h2>
-      {recHistory && recHistory.map((item, index) => (
-         <div key={item.id} className='row-leaderboard'>
+      
+      {recyclingHistory && recyclingHistory.map((item, index) => (
+         <div key={item.index} className='row-leaderboard'>
          <div className='column1'>{item.date}</div>
          <div className='column2'>{item.amount}</div>
        </div>
