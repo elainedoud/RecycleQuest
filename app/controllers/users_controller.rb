@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     end
 
     def show_recyclelogs
-        user = User.find_by(id: params[:id])
+        user = User.find(params[:id])
         logs = user.recyclelogs
         render json: logs
     end
