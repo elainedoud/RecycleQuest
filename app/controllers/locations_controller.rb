@@ -11,7 +11,7 @@ class LocationsController < ApplicationController
     end
 
     def create 
-        location = Location.new(location_params)
+        location = Location.create(location_params)
         render json: location, status: :created
     end
 

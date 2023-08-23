@@ -14,7 +14,7 @@ end
 #This method is still in progress
 
 def create
-    log = Recyclelog.new(recyclelog_params)
+    log = Recyclelog.create(recyclelog_params)
     render json: log
 end
 

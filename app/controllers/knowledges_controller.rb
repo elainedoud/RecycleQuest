@@ -11,7 +11,7 @@ class KnowledgesController < ApplicationController
     end
 
     def create
-        knowledge = Knowledge.new(knowledge_params)
+        knowledge = Knowledge.create(knowledge_params)
         render json: knowledge
     end
 

@@ -12,26 +12,27 @@ class PointsController < ApplicationController
             point = Point.create(point_params)
         end
     end
-    #Will likely need to experiment with assign_points method to make sure
-    #it's working as expected
 
     def addpoints
-        user = User.find_by(id: params[:id])
+        user = User.find(params[:id])
         point = user.points.create(point_params)
         render json: point
     end
 
     def addpointsbytype
-        user = User.find_by(id: params[:id])
+        user = User.find(params[:id])
         if user
-            point = user.points.create(point_params)
-            render json: point
+            point = user.points.create!(point_params)
+            if point.valid?
+                render json: point
+              else
+                render json: { error: "Point not valid" }, status: :unprocessable_entity
+              end
           else
             render json: { error: "User not found" }, status: :not_found
-          end
-        #user.total_points_count += point.points_count
+        end
+        user.total_points_count += point.points_count
     end
-    #Why is user id not updating to User.id? - because user is not being found
 
    # def addpointsbytype
    #     user = User.find_by(id: params[:id])
@@ -52,12 +53,12 @@ class PointsController < ApplicationController
  #  end
     
     def create
-        point = Point.new(point_params)
+        point = Point.create(point_params)
         render json: point
     end
 
     def point_params
-        params.permit(:id, :user_id, :points_type, :points_count, :date)
+        params.permit(:points_type, :points_count, :date)
     end
 
     def points_type_params(points_type)
