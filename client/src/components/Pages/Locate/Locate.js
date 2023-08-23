@@ -34,10 +34,10 @@ const Locate = () => {
 
   const handleSearch = ({ location, recyclables }) => {
     const filtered = locations.filter(loc => {
-      const Match = location === '' || loc.code === location.toString()
+      const match = location === '' || loc.zipcode.toString() === location
       const recyclablesMatch = recyclables === '' || loc.accepted_recyclables.includes(recyclables)
 
-      return Match && recyclablesMatch
+      return match && recyclablesMatch
     })
     setFilteredLocations(filtered)
   }
