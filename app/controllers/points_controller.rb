@@ -24,6 +24,8 @@ class PointsController < ApplicationController
         if user
             point = user.points.create!(point_params)
             if point.valid?
+                user.total_points_count += point.points_count
+                user.save
                 render json: point
               else
                 render json: { error: "Point not valid" }, status: :unprocessable_entity
@@ -31,7 +33,6 @@ class PointsController < ApplicationController
           else
             render json: { error: "User not found" }, status: :not_found
         end
-        user.total_points_count += point.points_count
     end
 
    # def addpointsbytype
