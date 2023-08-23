@@ -120,47 +120,45 @@ function Redeem() {
         console.error('Error adding recycle entry:', error)
       })
 
-    if (existingEntryIndex !== -1) {
-      const updatedRecHistory = [...recyclingHistory]
-      updatedRecHistory[existingEntryIndex].amount += count
-      setTodaysRecycled(updatedRecHistory[existingEntryIndex].amount += count)
-      setRecyclingHistory(updatedRecHistory)
-      updatePoints("recycle_redemption", count * 10)
-    } else {
-      updatePoints("recycle_redemption", count * 10)
-      setRecyclingHistory([...recyclingHistory, newRecycle])
-    }
-
+      if (existingEntryIndex !== -1) {
+        const updatedRecHistory = [...recyclingHistory]
+        updatedRecHistory[existingEntryIndex].amount += count
+        setTodaysRecycled(updatedRecHistory[existingEntryIndex].amount + count) // Corrected
+        setRecyclingHistory(updatedRecHistory)
+        updatePoints("recycle_redemption", count * 10)
+      } else {
+        updatePoints("recycle_redemption", count * 10)
+        setRecyclingHistory([...recyclingHistory, newRecycle])
+      }
     setCount(0)
   }
-
-  return (
-    <>
-      <Info text="Here you can redeem your recyclings for points! New updates include integration with local recycling facilities and direct receipt of recycling refunds!" /> <br />
+return (
+      <>
+      <Info text="Here you can redeem your recyclings for points! New updates include integration with local recycling facilities and direct receipt of recycling refunds!"/> <br/>
       <div className="recyclopoints">
-
+        
         <div className="stats-detail">
           <div className="points-card">
             <h2 className="recycling-history">Recycling History</h2><br />
-            <b>Largest Deposit:</b> {highestDeposit.amount} <br /><br />
+            <b>Largest Deposit:</b> {highestDeposit.amount} 
             {/* display days since last recycle OR how many they've recycled today - depending if they added any entries today */}
-            {daysSinceLastRecycle === 0 || isNaN(daysSinceLastRecycle) && daysSinceLastRecycle ? (
-              `You've recycled ${todaysRecycled} ${todaysRecycled == 1 ? "item" : "items"} today!`
-            ) : (
-              <div>
-                <b>Days Since Last Deposit: </b>
-                {`${daysSinceLastRecycle} Days`}
-              </div>
-            )}
-            <br /><br /><br />
-
+            {daysSinceLastRecycle === 0 || isNaN(daysSinceLastRecycle) && daysSinceLastRecycle ? (""
+                // `You've recycled ${todaysRecycled} ${todaysRecycled == 1? "item" : "items"} today!`
+              ) : (
+                <div>
+                  <b>Days Since Last Deposit: </b>
+                  {`${daysSinceLastRecycle} Days`}
+                </div>
+              )}
+              <br /><br /><br />
+                
             <RecyclingHistory recyclingHistory={recyclingHistory} /><br />
             You've recycled <b>{yearToDateTotal}</b> items this year<br /><br />
-
-
-          </div>
-        </div>
-
+  
+       
+            </div>
+      </div>
+  
         <div className="more-points">
           <h3 className="more">WANT TO REDEEM RECYCLEABLES?</h3>
           <br /><button onClick={handlePopup}>{addPopup ? "CLOSE" : "REDEEM"}</button>
@@ -171,15 +169,19 @@ function Redeem() {
                 <button className="count-button" onClick={() => handleCountChange(-1)}>-</button>
               </div>
               <button className="redeem-button" onClick={handleSubmit}>REDEEM {count} RECYCLEABLES</button>
-
+              
             </div>
           }
-
-        </div>
-        <br />
+         
+          
+        
+          
+    
       </div>
-    </>
-  )
-}
-
-export default Redeem
+      <br/>
+      </div>
+      </>
+    )
+  }
+  
+  export default Redeem
