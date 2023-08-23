@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
     end
 
     def create
-        question = Question.new(question_params)
+        question = Question.create(question_params)
         render json: question, status: :created
     end
 
