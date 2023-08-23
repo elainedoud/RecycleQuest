@@ -5,7 +5,8 @@ import Countdown from '../../../Home/Countdown'
 import './Map.css'
 import UserContext from '../../../../Context/UserContext'
 
-function Map({ gems, collectedCount, incrementCollected, collectedKnowledge, setCollectedKnowledge }) {
+
+function Map({ gems, collectedCount, incrementCollected, collectedKnowledge, setCollectedKnowledge}) {
   const { userPoints, setUserPoints, updatePoints } = useContext(UserContext)
   const [nextBonusTime, setNextBonusTime] = useState(new Date().getTime() + 24 * 60 * 60 * 1000)
   const [selectedGem, setSelectedGem] = useState(null)
@@ -20,7 +21,9 @@ function Map({ gems, collectedCount, incrementCollected, collectedKnowledge, set
         if (gem.id === selectedGem.id) {
           const newPoints = userPoints + 100
           setUserPoints(newPoints)
-          updatePoints("daily_gem", )
+
+          updatePoints("daily_gem", 100 )
+          
           const updatedCollectedKnowledge = [...collectedKnowledge, selectedGem.knowledge_blurb]
           incrementCollected(collectedCount + 15)
           setCollectedKnowledge(updatedCollectedKnowledge)

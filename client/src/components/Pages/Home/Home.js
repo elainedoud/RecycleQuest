@@ -118,31 +118,8 @@ function Home() {
             setQuizPoints(pointsToAdd)
             updatePoints("daily_quiz", pointsToAdd)
         }
-        // Elaine to confirm this endpoint
-        // fetch(`/addpointsbytype?id=${user.id}`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         user_id: user.id,
-        //         points_type: "daily_quiz",
-        //         points_count: 15,
-        //         date: new Date().toISOString()
-        //     })
-        // })
-        // .then(response => {
-        //     if (response.ok) {
-        //         // console.log("Points added successfully!")
-        //         const newPoints = userPoints + pointsToAdd
-        //         setUserPoints(newPoints)
-        //     } else {
-        //         console.error("Failed to add points.")
-        //     }
-        // })
     }
-    // console.log(timeRemaining)
-    // console.log(timeRemainingQuiz)
+
 
     const [score, setScore] = useState(quizPoints/100)
     const [points, setPoints] = useState(null)
@@ -154,7 +131,8 @@ function Home() {
     return (
         <div>
             <Info text={"Daily bonus can be redeemed once every 24 hours. Daily questions refresh every 24 hours and are based on knowledge collected from yesterday's gems quest."}/>
-            
+
+            <br/><br/><br/>
 
             {!quizStarted && canRedeemQuiz && !quizCompleted && (
                 <button className="daily-question" onClick={() => setQuizStarted(true)}>Start Today's Quiz</button>
@@ -193,7 +171,8 @@ function Home() {
                     </div>
                 )}
                 {canRedeem && (
-                    <button className="daily-question" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
+
+                    <button className="daily-question-button" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
                 )}
             </div>
                     {/* Display user's quiz score */}

@@ -11,12 +11,24 @@ body {
     margin-right: auto;
 }
 
-button.redeem, button.daily-question {
+
+
+button.redeemn {
     padding: 50px 50px;
     font-size: 22px;
     color: #fff;   
     border-radius: 20px;
     width: 100%;
+    /* margin-top: 10px; */
+    margin-bottom: 15px;
+}
+
+button.daily-question {
+    padding: 50px 80px;
+    font-size: 18px;
+    color: #fff;   
+    border-radius: 20px;
+    /* width: 100%; */
     /* margin-top: 10px; */
     margin-bottom: 15px;
 }
@@ -53,3 +65,7 @@ p.redeemable{
     text-transform: uppercase;
 }
 
+.daily-question-button{
+    max-width: 100%;
+    padding: 30px;
+}

@@ -26,7 +26,7 @@ function Explore() {
   }, [])
 
   useEffect(() => {
-    if (collectedCount === gems.length - 1) {
+    if (collectedCount === gems.length && gems.length !=0 ) {
       // const newCollectedKnowledge = gems.map(gem => gem.knowledge)
       // setCollectedKnowledge(newCollectedKnowledge)
       setGemsCollected(true)
@@ -45,10 +45,10 @@ function Explore() {
     text={
       "Gems are the secret to knowledge! Click around and learn about Recycling, earn points, and even get insights into tomorrow's question of the day!"
     }
-  />
+  /><br/>
       
         <div className="gem-counter">
-          {!gemsCollected ? <p>GEMS COLLECTED: {collectedCount} / {gems.length -1}</p> : <p>All Gems Collected</p>}
+          {!gemsCollected ? <p>GEMS COLLECTED: {collectedCount} / {gems.length}</p> : <p>All Gems Collected</p>}
         </div>
         
       </div>
