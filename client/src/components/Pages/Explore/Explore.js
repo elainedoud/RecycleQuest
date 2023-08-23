@@ -48,7 +48,7 @@ function Explore() {
   />
       
         <div className="gem-counter">
-          <br/>GEMS COLLECTED: {collectedCount} / {gems.length}
+          {!gemsCollected ? <p>GEMS COLLECTED: {collectedCount} / {gems.length -1}</p> : <p>All Gems Collected</p>}
         </div>
         
       </div>
