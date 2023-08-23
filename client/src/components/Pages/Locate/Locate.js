@@ -8,9 +8,8 @@ import UserContext from "../../Context/UserContext"
 
 
 const Locate = () => {
-  const { user, userPoints, setUserPoints } = useContext(UserContext)
-  const [locations, setLocations] = useState([])
-  const [filteredLocations, setFilteredLocations] = useState([])
+  const { user, userPoints, setUserPoints, locations, setLocations } = useContext(UserContext)
+  const [filteredLocations, setFilteredLocations] = useState(locations)
   const [showSubmitWindow, setShowSubmitWindow] = useState(false)
 
   const formik = useFormik({
@@ -27,8 +26,11 @@ const Locate = () => {
     fetch("/alllocations")
       .then(r => r.json())
       .then(data => {
-        setLocations(data)
-        setFilteredLocations(data)
+        if(filteredLocations.length <= 0){
+          setLocations(data)
+          setFilteredLocations(data)
+          console.log(data)
+      }
       })
   }, [])
 
