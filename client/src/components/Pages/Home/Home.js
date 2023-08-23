@@ -131,7 +131,9 @@ function Home() {
     return (
         <div>
             <Info text={"Daily bonus can be redeemed once every 24 hours. Daily questions refresh every 24 hours and are based on knowledge collected from yesterday's gems quest."}/>
+
             <br/><br/><br/>
+
             {!quizStarted && canRedeemQuiz && !quizCompleted && (
                 <button className="daily-question" onClick={() => setQuizStarted(true)}>Start Today's Quiz</button>
             )}
@@ -169,6 +171,7 @@ function Home() {
                     </div>
                 )}
                 {canRedeem && (
+
                     <button className="daily-question-button" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
                 )}
             </div>
