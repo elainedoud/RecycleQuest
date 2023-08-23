@@ -17,10 +17,13 @@ function Questions() {
 
   useEffect(() => {
     fetch("/allquestions")
-    .then(r => r.json())
-    .then(data => setQuestions(data))
-  })
-
+      .then(r => r.json())
+      .then(data => {
+        const shuffledQuestions = data.sort(() => 0.5 - Math.random())
+        const randomQuestions = shuffledQuestions.slice(0, 5)
+        setQuestions(randomQuestions)
+      })
+  }, [])
   useEffect(() => {
     if (currentQuestionIndex >= questions.length) {
       let newTotal = userPoints + points
@@ -34,14 +37,14 @@ function Questions() {
         // })
         // .then(response => {
         //     if (response.ok) {
-        //         console.log("Points added successfully!");
+        //         console.log("Points added successfully!")
         //         setUserPoints(newTotal)
         //     } else {
-        //         console.error("Failed to add points.");
+        //         console.error("Failed to add points.")
         //     }
-        // });
+        // })
     }
-  }, [currentQuestionIndex, questions.length, userScore]);
+  }, [currentQuestionIndex, questions.length, userScore])
 
   const handleAnswerSelect = (selectedAnswer) => {
     if (!answered) {
