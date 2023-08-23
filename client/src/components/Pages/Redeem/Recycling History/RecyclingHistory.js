@@ -3,7 +3,7 @@ import './RecyclingHistory.css'
 
 function RecyclingHistory({ recyclingHistory }) {
   return (
-    <div className="recycling-history">
+    <div key={"recycling-history"}className="recycling-history">
       
       {recyclingHistory && recyclingHistory.map((item, index) => (
          <div key={item.index} className='row-leaderboard'>

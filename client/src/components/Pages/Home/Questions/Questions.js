@@ -52,13 +52,13 @@ function Questions({ timeRemainingQuiz, redeemPointsQuiz, setQuizScores }) {
     setUserAnswer(null)
     setCurrentQuestionIndex(currentQuestionIndex + 1)
   }
-
+  
   return (
     <div className="daily-questions">
       {questions.length > 0 && currentQuestionIndex < questions.length ? (
         <div className="card">
           <h2 className="points-detail">Question {currentQuestionIndex + 1}</h2>
-          <p className="query">{questions[currentQuestionIndex].query}</p>
+          <p className="query">{questions[currentQuestionIndex].query}</p> <br/>
           <div className="options">
             <div
               className={`option ${
@@ -89,14 +89,14 @@ function Questions({ timeRemainingQuiz, redeemPointsQuiz, setQuizScores }) {
             </div>
           </div>
           {userAnswer !== null && (
-            <div>
+            <div><br/>
               {userAnswer === questions[currentQuestionIndex].answer ? (
                 <p className="answer">Correct!</p>
               ) : (
-                <p className="answer">
+                <div className="answer">
                   Wrong! The correct answer is{" "}
-                  {questions[currentQuestionIndex].answer}.
-                </p>
+                  <p className="correct-option">{questions[currentQuestionIndex].answer}</p>
+                </div>
               )}
               <button className="next" onClick={nextQuestion}>
                 Next Question
