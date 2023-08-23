@@ -12,22 +12,16 @@ function Explore() {
   const [collectedKnowledge, setCollectedKnowledge] = useState([])
   const { user, lastDailyGems, setLastDailyGems } = useContext(UserContext)
   
-  let lastDailyTime = Date.parse(user.last_gem_bonus)
+  let lastDailyTime = Date.parse(lastDailyGems)
   const now = new Date()
   const timeSinceLastDailyGem = now - lastDailyTime
   const canShowMap = timeSinceLastDailyGem > 24 * 60 * 60 * 1000
   const timeRemaining = canShowMap ? 0 : 24 * 60 * 60 * 1000 - timeSinceLastDailyGem
 
-  // console.log("last daily: " + lastDailyGems)
-  // console.log("now: " + now)
-  // console.log("time since last daily: " + timeSinceLastDailyGem)
-  // console.log("can show map: " + canShowMap)
-  // console.log("time remaining: " + timeRemaining)
-
   useEffect(() => {
     fetch('/allknowledge')
       .then(r => r.json())
-      .then(data => setGems(data)) // make gems for each knowledge blurb
+      .then(data => setGems(data))
   }, [])
 
   const incrementCollected = () => {
@@ -55,6 +49,7 @@ function Explore() {
               <div key={index} className="knowledge-row">{knowledge}</div>
             ))}
           </div>
+          <Countdown timeRemaining={timeRemaining}/>
         </div>
       ) : (
         <Map
