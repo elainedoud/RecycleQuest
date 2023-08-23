@@ -63,11 +63,11 @@
 }
 
 input.locate{
-  border-color: var(--violet) !important;
+  border-color: var(--light-blue) !important;
   background-color: var(--darkest-blue);
   color: var(--light-blue);
 }
 
 input.locate::placeholder {
-  color: var(--violet); /* Set placeholder text color */
+  color: var(--light-blue); /* Set placeholder text color */
 }

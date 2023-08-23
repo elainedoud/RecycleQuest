@@ -50,9 +50,12 @@ function Leaderboard() {
 
       
       </div> <br/><br/>
-        <h3>WANT TO EARN MORE POINTS?</h3>
+        <div className="more-points">
+        <h3 className="more">WANT TO EARN MORE POINTS?</h3>
         <button className="nav-buttons" onClick={() => navigate('/explore')}>Explore </button>
-      <button className="nav-buttonson" onClick={() => navigate('/redeem')}> Recycle</button>
+      <button className="nav-buttons" onClick={() => navigate('/redeem')}> Recycle</button>
+        </div>
+        
 
     </>
   )

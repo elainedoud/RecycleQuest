@@ -20,7 +20,7 @@ function Questions({ timeRemainingQuiz, redeemPointsQuiz, setQuizScores }) {
       .then((r) => r.json())
       .then((data) => {
         const shuffledQuestions = data.sort(() => 0.5 - Math.random())
-        const randomQuestions = shuffledQuestions.slice(0, 1)
+        const randomQuestions = shuffledQuestions.slice(0, 5)
         setQuestions(randomQuestions)
       })
   }, [])

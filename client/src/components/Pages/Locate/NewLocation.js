@@ -46,6 +46,7 @@ const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
       <h2 className='add-location'>ADD FACILITY</h2>
       <form onSubmit={formik.handleSubmit}>
         <input
+          className="new-location"
           type="text"
           id="name"
           name="name"
@@ -55,6 +56,7 @@ const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
         /> <br/>
 
         <input
+          className="new-location"
           type="text"
           id="address1"
           name="address1"
@@ -64,6 +66,7 @@ const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
         /> <br/>
 
         <input
+          className="new-location"
           type="text"
           id="address2"
           name="address2"
@@ -72,7 +75,8 @@ const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
           onChange={formik.handleChange}
         /> <br/>
 
-        <input
+        <input  
+          className="new-location"
           type="text"
           id="recyclables"
           name="accepted_recyclables"
@@ -82,6 +86,7 @@ const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
         /> <br/>
 
         <input
+          className="new-location"
           type="text"
           id="zipcode"
           name="zipcode"

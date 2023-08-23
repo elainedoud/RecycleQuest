@@ -36,13 +36,17 @@ div.stats-detail {
     background-color: var(--darkest-blue);
     border: 1px solid var(--green);
     color: var(--light-blue);
-    padding: 50px 10px ;
+    padding: 30px 10px ;
     border-radius: 30px;
     text-transform: uppercase;
     max-width: 70%;
     margin: auto;
+    margin-bottom: 50px;
     
 }
+/* .redemption-container {
+    margin-bottom: 800px;
+} */
 
 .count-buttons {
     display: flex;
@@ -66,4 +70,7 @@ div.stats-detail {
     background: var(--violet);
     color: var(--light-blue);
   }
-  
+/*   
+  .redeem-button{
+    margin-bottom: 100px;
+  } */

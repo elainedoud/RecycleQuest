@@ -116,11 +116,14 @@ function Redeem() {
 
           <RecyclingHistory recyclingHistory={recyclingHistory} /><br />
           You've recycled <b>{yearToDateTotal}</b> items this year<br /><br />
-        </div>
-        
-      </div>
-      <br /><button onClick={handlePopup}>{addPopup ? "CLOSE" : "REDEEM"}</button>
-      <div className="redemption-container">
+
+     
+          </div>
+    </div>
+
+      <div className="more-points">
+        <h3 className="more">WANT TO REDEEM RECYCLEABLES?</h3>
+        <br /><button onClick={handlePopup}>{addPopup ? "CLOSE" : "REDEEM"}</button>
         {addPopup &&
           <div className="count-popup">
             <div className="count-buttons">
@@ -131,7 +134,13 @@ function Redeem() {
             
           </div>
         }
-      </div>
+       
+        
+      
+        
+  
+    </div>
+    <br/>
     </div>
   )
 }

@@ -40,15 +40,17 @@ function Explore() {
 
   return (
     <>
-      <div>
+    <div>
+      <Info
+    text={
+      "Gems are the secret to knowledge! Click around and learn about Recycling, earn points, and even get insights into tomorrow's question of the day!"
+    }
+  />
+      
         <div className="gem-counter">
-          Gems Collected: {collectedCount} / {gems.length}
+          <br/>GEMS COLLECTED: {collectedCount} / {gems.length}
         </div>
-        <Info
-          text={
-            "Gems are the secret to knowledge! Click around and learn about Recycling, earn points, and even get insights into tomorrow's question of the day!"
-          }
-        />
+        
       </div>
 
       {gemsCollected ? (
