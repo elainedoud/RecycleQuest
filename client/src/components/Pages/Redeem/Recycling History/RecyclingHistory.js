@@ -7,8 +7,8 @@ function RecyclingHistory({ recyclingHistory }) {
       
       {recyclingHistory && recyclingHistory.map((item, index) => (
          <div key={item.index} className='row-leaderboard'>
-         <div className='column1'>{item.date}</div>
-         <div className='column2'>{item.amount}</div>
+         <div key={item.index + "2"} className='column1'>{item.date}</div>
+         <div key={item.index + "3"} className='column2'>{item.amount}</div>
        </div>
       ))}
     </div>
