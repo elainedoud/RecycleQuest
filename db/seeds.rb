@@ -35,11 +35,11 @@ eighth_question = Question.create(query: "What type of paper should I not put in
 ninth_question = Question.create(query: "What does the number in the recycling symbol on the bottom of a plastic item mean?", A: "serial batch", B: "nothing", C: "it specifies the type of plastic; check local ordinances to confirm if your town recycles that number", answer: "C")
 tenth_question = Question.create(query: "Which of the following can be recycled?", A: "plastic straw", B: "cereal box", C: "light bulbs", answer: "B")
 
-first_user = User.create(username: "isabella_mercer", password: "123", emailaddress: "catmomma@gmail.com", dateofbirth: "10-17-1990", total_points_count: 100, last_gem_bonus:'2023-08-21,08:15', last_daily_bonus:'2023-08-20,18:55')
-second_user = User.create(username: "keeganharrington3", password: "123", emailaddress: "keegan3@me.com", dateofbirth: "03-04-1987", total_points_count: 800, last_gem_bonus:'2023-07-15,16:45', last_daily_bonus:'2023-02-14,09:10')
-third_user = User.create(username: "liamdonovan", password: "123", emailaddress: "donovanbooks98@aol.com", dateofbirth: "12-12-1998", total_points_count: 1200, last_gem_bonus:'2023-06-10,10:30', last_daily_bonus:'2023-01-09,14:25')
-fourth_user = User.create(username: "noah_sinclair", password: "123", emailaddress: "noahsinclair@gmail.com", dateofbirth: "05-23-1995", total_points_count: 600, last_gem_bonus:'2023-05-05,20:20', last_daily_bonus:'2022-12-04,21:40')
-fifth_user = User.create(username: "avamontgomery", password: "123", emailaddress: "avamusiclover@yahoo.com", dateofbirth: "11-8-2002", total_points_count: 400, last_gem_bonus:'2023-04-01,12:00', last_daily_bonus:'2022-11-29,05:05')
+first_user = User.create(username: "isabella_mercer", password: "123", emailaddress: "catmomma@gmail.com", dateofbirth: "10-17-1990", total_points_count: 100, last_gem_bonus:'2023-08-21,08:15', last_daily_bonus:'2023-08-20,18:55', last_daily_question:'2023-08-20,18:55')
+second_user = User.create(username: "keeganharrington3", password: "123", emailaddress: "keegan3@me.com", dateofbirth: "03-04-1987", total_points_count: 800, last_gem_bonus:'2023-07-15,16:45', last_daily_bonus:'2023-02-14,09:10', last_daily_question:'2023-02-14,09:10')
+third_user = User.create(username: "liamdonovan", password: "123", emailaddress: "donovanbooks98@aol.com", dateofbirth: "12-12-1998", total_points_count: 1200, last_gem_bonus:'2023-06-10,10:30', last_daily_bonus:'2023-01-09,14:25', last_daily_question:'2023-02-14,09:10')
+fourth_user = User.create(username: "noah_sinclair", password: "123", emailaddress: "noahsinclair@gmail.com", dateofbirth: "05-23-1995", total_points_count: 600, last_gem_bonus:'2023-05-05,20:20', last_daily_bonus:'2022-12-04,21:40', last_daily_question:'2023-02-14,09:10')
+fifth_user = User.create(username: "avamontgomery", password: "123", emailaddress: "avamusiclover@yahoo.com", dateofbirth: "11-8-2002", total_points_count: 400, last_gem_bonus:'2023-04-01,12:00', last_daily_bonus:'2022-11-29,05:05', last_daily_question:'2023-02-14,09:10')
 
 one_point = Point.create(user: first_user, question: first_question, points_count: 2, points_type: "daily_bonus", date:'2023,07,12')
 two_point= Point.create(user: first_user, question: second_question, points_count: 2, points_type: "daily_bonus", date:'2023,08,02')
