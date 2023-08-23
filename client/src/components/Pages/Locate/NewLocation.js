@@ -8,8 +8,8 @@ const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
 
   const initialValues = {
     name: '',
-    address1: '',
-    address2: '',
+    address_1: '',
+    address_2: '',
     accepted_recyclables: '',
     zipcode: '',
   }
@@ -63,20 +63,20 @@ const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
         <input
           className="new-location"
           type="text"
-          id="address1"
-          name="address1"
+          id="address_1"
+          name="address_1"
           placeholder="Address 1"
-          value={formik.values.address1}
+          value={formik.values.address_1}
           onChange={formik.handleChange}
         /> <br/>
 
         <input
           className="new-location"
           type="text"
-          id="address2"
-          name="address2"
+          id="address_2"
+          name="address_2"
           placeholder="Address 2"
-          value={formik.values.address2}
+          value={formik.values.address_2}
           onChange={formik.handleChange}
         /> <br/>
 
