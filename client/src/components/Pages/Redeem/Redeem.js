@@ -6,7 +6,7 @@ import RecyclingHistory from "./Recycling History/RecyclingHistory"
 function Redeem() {
   const recycle = "♻️"
   const [count, setCount] = useState(0)
-  const { user, setRecyclingHistory, recyclingHistory } = useContext(UserContext)
+  const { user, setRecyclingHistory, recyclingHistory, updatePoints } = useContext(UserContext)
   const [addPopup, setAddPopup] = useState(false)
 
   useEffect(() => {
@@ -64,7 +64,6 @@ function Redeem() {
   }, 0)
 
   const handleSubmit = () => {
-    console.log("you've hit handleSubmit")
     const currentDate = new Date().toISOString().slice(0, 10)
     const existingEntryIndex = recyclingHistory.findIndex(
       (entry) => entry.date === currentDate
@@ -78,26 +77,26 @@ function Redeem() {
       setCount(0)
     } else {
       // Create new entry
-      const newRecycle = { date: currentDate, amount: count }
+      const newRecycle = { amount: count }
+      updatePoints("recycle_redemption", count * 10)
       setRecyclingHistory([...recyclingHistory, newRecycle])
       setCount(0)
-
-        //   fetch('/addrecycle', {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(newRecycle),
-        //   })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //       console.log('New recycle entry added:', data)
-        //       setRecyclingHistory([...recyclingHistory, data])
-        //       setCount(0)
-        //     })
-        //     .catch(error => {
-        //       console.error('Error adding recycle entry:', error)
-        //     })
+          fetch(`/newlog?id=${user.id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newRecycle),
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log('New recycle entry added:', data)
+              setRecyclingHistory([...recyclingHistory, data])
+              setCount(0)
+            })
+            .catch(error => {
+              console.error('Error adding recycle entry:', error)
+            })
     }
   }
 

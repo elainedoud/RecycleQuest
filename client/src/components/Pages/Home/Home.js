@@ -20,7 +20,8 @@ function Home() {
         quizCompleted, 
         setQuizCompleted, 
         quizPoints, 
-        setQuizPoints   } = useContext(UserContext)
+        setQuizPoints,
+        updatePoints   } = useContext(UserContext)
     // console.log(user)
     // console.log(lastDailyQuiz)
    
@@ -100,7 +101,7 @@ function Home() {
             setLastDailyBonus()
             setTimerStopped(false)
             setTimeRemaining(24 * 60 * 60 * 1000)
-            setQuizPoints(pointsToAdd)
+            updatePoints("daily_bonus", pointsToAdd)
           }
     }
 
@@ -114,7 +115,8 @@ function Home() {
             setTimerStoppedQuiz(false)
             setTimeRemainingQuiz(24 * 60 * 60 * 1000)
             setQuizCompleted(true)
-            console.log(lastDailyQuiz)
+            setQuizPoints(pointsToAdd)
+            updatePoints("daily_quiz", pointsToAdd)
         }
         // Elaine to confirm this endpoint
         // fetch(`/addpointsbytype?id=${user.id}`, {
@@ -152,21 +154,7 @@ function Home() {
     return (
         <div>
             <Info text={"Daily bonus can be redeemed once every 24 hours. Daily questions refresh every 24 hours and are based on knowledge collected from yesterday's gems quest."}/>
-            <div className="daily-points">
-                {!canRedeem ? (
-                    <div className="redeem-status">
-                        <Countdown timeRemaining={timeRemaining} />
-                    </div>
-                ) : (
-                    <div className="redeem-status">
-                        <b>Today's Daily Bonus:</b> 100 {gem}<br />
-                        {/* You can add any additional content or formatting here */}
-                    </div>
-                )}
-                {canRedeem && (
-                    <button className="daily-question" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
-                )}
-            </div>
+            
 
             {!quizStarted && canRedeemQuiz && !quizCompleted && (
                 <button className="daily-question" onClick={() => setQuizStarted(true)}>Start Today's Quiz</button>
@@ -191,7 +179,23 @@ function Home() {
                     Points Eearned: {quizPoints}
                     </p>
 
-                    <Countdown timeRemaining={timeRemainingQuiz} />
+                    <Countdown type={"quiz"} timeRemaining={timeRemainingQuiz} />
+
+                    <div className="daily-points">
+                {!canRedeem ? (
+                    <div className="redeem-status">
+                        <Countdown timeRemaining={timeRemaining} type={"daily bonus"}/>
+                    </div>
+                ) : (
+                    <div className="redeem-status">
+                        <b>Today's Daily Bonus:</b> 100 {gem}<br />
+                        {/* You can add any additional content or formatting here */}
+                    </div>
+                )}
+                {canRedeem && (
+                    <button className="daily-question" onClick={() => redeemPoints(100)}>REDEEM DAILY BONUS</button>
+                )}
+            </div>
                     {/* Display user's quiz score */}
                 </div>
             )}
