@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { useFormik } from 'formik'
 import './NewLocation.css'
+import UserContext from '../../Context/UserContext'
 
 const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
+  const {user, updatePoints} = useContext(UserContext)
+
   const initialValues = {
     name: '',
     address1: '',
@@ -32,7 +35,9 @@ const NewLocation = ({ onCancel, onNewLocationSubmit }) => {
         })
         .then(newLocation => {
           if (newLocation) {
-            onNewLocationSubmit(newLocation) // Update parent component's location state
+            onNewLocationSubmit(newLocation)
+            updatePoints("recycle_redemption", 10)
+             // Update parent component's location state
           }
         })
         .catch(error => {

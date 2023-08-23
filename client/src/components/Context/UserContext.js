@@ -17,7 +17,7 @@ export function UserProvider({ children }) {
   const [gemsCollected, setGemsCollected] = useState(false)
   const [collectedKnowledge, setCollectedKnowledge] = useState(user ? user.collected_knowledge : []);
 
-  console.log(gemsCollected)
+
   //authenticate user based on backend session
   useEffect(() => {
     fetch("/user")
@@ -47,6 +47,33 @@ export function UserProvider({ children }) {
       
   }, [])
 
+  //update points by type 
+  const updatePoints = (points_type, points_count) => {
+    fetch(`/addpointsbytype?id=${user.id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_id: user.id,
+                points_type: points_type,
+                points_count: points_count,
+                date: new Date().toISOString()
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                // console.log("Points added successfully!")
+                const newPoints = userPoints + points_count
+                setUserPoints(newPoints)
+                console.log("added points to user!")
+            } else {
+                console.error("Failed to add points.")
+            }
+        })
+      }
+
+
   // Return the UserContext Provider with the user and setUser in value
   return (
     <UserContext.Provider value={{ 
@@ -75,7 +102,8 @@ export function UserProvider({ children }) {
       gemsCollected, 
       setGemsCollected,
       collectedKnowledge, 
-      setCollectedKnowledge
+      setCollectedKnowledge, 
+      updatePoints
       }}>
       {children}
     </UserContext.Provider>

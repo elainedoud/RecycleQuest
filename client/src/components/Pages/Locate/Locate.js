@@ -8,7 +8,7 @@ import UserContext from "../../Context/UserContext"
 
 
 const Locate = () => {
-  const { user, userPoints, setUserPoints, locations, setLocations } = useContext(UserContext)
+  const { user, userPoints, setUserPoints, locations, setLocations, updatePoints } = useContext(UserContext)
   const [filteredLocations, setFilteredLocations] = useState(locations)
   const [showSubmitWindow, setShowSubmitWindow] = useState(false)
 
@@ -57,6 +57,8 @@ const Locate = () => {
     const updatedLocations = [...locations, values]
     setLocations(updatedLocations)
     setFilteredLocations(updatedLocations)
+    
+
     setUserPoints(userPoints + 25)
   }
 
@@ -110,7 +112,7 @@ const Locate = () => {
       </div>
       {showSubmitWindow && (
         <div className="submit-location-container">
-          <NewLocation onNewLocationSubmit={onNewLocationSubmit} onCancel={onCancelSubmit} />
+          <NewLocation onNewLocationSubmit={onNewLocationSubmit} onCancel={onCancelSubmit}  />
         </div>
       )} <br/><br/><br/><br/>
     </div>
